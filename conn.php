@@ -2,7 +2,7 @@
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
-$db = "bibliotek";
+$db = "biblotek";
 
 // Create connection
 $conn = new mysqli($dbhost, $dbuser, $dbpass, $db);
