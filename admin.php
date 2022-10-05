@@ -10,8 +10,8 @@
 <body>
     <form method="post" action="laggatill.php">  
             <input type="hidden" name="Person">
-            <input type="text" id="bok" name="Titel" max="100" placeholder="Lägga till bok?" required="required">
-            <input type="text" id="bok" name="forf"  placeholder="Författare" required="required">
+            <input type="text" id="bok" name="Titel" max="100" placeholder="Namn" required="required">
+            <input type="text" id="bok" name="forf"  placeholder="Password" required="required">
             <input type="submit">
     </form> 
 
@@ -40,9 +40,9 @@
             <input type="hidden" name="Film">
             <input type="text" id="Film" name="titel3" max="100" placeholder="Titel" required="required">
             <input type="text" id="Film" name="regi" max="100" placeholder="Regissör" required="required">
-            <input type="text" id="Film" name="langd2" max="100" placeholder="Langd" required="required">
+            <input type="number" id="Film" name="langd2" max="100" placeholder="Langd" required="required">
             <input type="text" id="Film" name="genre3" max="100" placeholder="Genre" required="required">
-            <input type="text" id="Film" name="pid3" max="100" placeholder="Person ID" required="required">
+            <input type="number" id="Film" name="pid3" max="100" placeholder="Person ID" required="required">
             <input type="submit">
         </form>
 </body>
