@@ -64,7 +64,17 @@
       } else {
         echo "Error: " . $sqlFilm . "<br>" . $conn->error;
       }
+    echo
   }
+
+
+
+
+
+
+
+
+
 ?>
 
 
