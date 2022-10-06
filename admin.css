@@ -12,18 +12,16 @@
     padding: 12px;
 
 }
-
-.Film{
-    
-}
-
+                    
 body{
     height: 100vh;
     background-color: rgb(156, 173, 231);
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: stretch;
     flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
 }
 
 form{
@@ -47,7 +45,6 @@ form{
 
 .box{
     height: 350px;
-    width: 200px;
     margin: 10px;
     background-color: rgb(53, 85, 145);
     padding: 50px;
@@ -55,6 +52,21 @@ form{
     box-shadow: rgb(49, 64, 153) 5px 8px 8px;
 }
 
-p{
+.print,
+.print2,
+.print3,
+.print4{
+
+    width: 500px;;
+    margin: 10px;
+    background-color: rgb(53, 85, 145);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: rgb(49, 64, 153) 5px 8px 8px;
+    color:white;
+}
+
+p,
+.print p{
     color:white;
 }
