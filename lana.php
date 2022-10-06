@@ -1,57 +1,118 @@
 <?php
+  //Connect to DB
+  require_once("conn.php");
+  //Defining variables
 
-require_once "conn.php";
+  // -------------------------------------------- //
+  // --------------- Bok ------------------------ //
+  // -------------------------------------------- //
+  $db = $conn;
+  $tableNameBok="bok";
+  $columnsBok= ['Titel', 'Forfattare', 'Genre', 'Antalsidor'];
+  //Fetching data
+  $fetchDataBok = fetch_data($db, $tableNameBok, $columnsBok);
+  //Defining function "fetch_data"
+  function fetch_data($db, $tableNameBok, $columnsBok){
+    if(empty($db)){
+     $msg= "Database connection error";
+    }elseif (empty($columnsBok) || !is_array($columnsBok)) {
+     $msg="columns Name must be defined in an indexed array";
+    }elseif(empty($tableNameBok)){
+      $msg= "Table Name is empty";
+    }else{
 
-if (isset($_POST['Bok'])) {
-    $Titel = $_POST["Titel"];
-    $forf = $_POST["forf"];
-    $ISBN = $_POST["ISBN"];
-    $genre = $_POST["genre"];
-    $sidor= $_POST["sidor"];
-    $pid = $_POST["pid"];
-    $ref = $_POST["ref"];
+    $columnNameBok = implode(", ", $columnsBok);
 
-    $sql = "INSERT INTO lanad (personID, bokID, filmID, ljudID, startdatum, slutdatum) VALUES ('$Titel','$forf', $ISBN, '$genre', $sidor, $pid, $ref);"; 
+    $sql = "SELECT ".$columnNameBok." FROM $tableNameBok"." ORDER BY titel";
+    $result = $db->query($sql);
 
-    if ($conn->query($sql) === TRUE) {
-      echo "New record created successfully";
-    } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+    if($result == true){ 
+      if ($result->num_rows > 0) {
+         $row= mysqli_fetch_all($result, MYSQLI_ASSOC);
+         $msg= $row;
+      } else {
+         $msg= "No Data Found"; 
+      }
+     }else{
+       $msg= mysqli_error($db);
+     }
+     }
+     return $msg;
+     }
 
+  
 
-}
+  // -------------------------------------------- //
+  // --------------- Ljud ----------------------- //
+  // -------------------------------------------- //
 
- if (isset($_POST['ljud'])) {
-   $Titel2 = $_POST["titel2"];
-   $forf2 = $_POST["forf2"];
-   $langd = $_POST["langd"];
-   $genre2 = $_POST["genre2"];
-   $rost = $_POST["rost"];
-   $pid2 = $_POST["pid2"];
+  $tableNameLjud="ljud";
+  $columnsLjud= ['Titel', 'Forfattare', 'Genre', 'Langd', 'Rost'];
+  //Fetching data
+  $fetchDataLjud = fetch_data_ljud($db, $tableNameLjud, $columnsLjud);
+  //Defining function "fetch_data"
+  function fetch_data_ljud($db, $tableNameLjud, $columnsLjud){
+    if(empty($db)){
+     $msgLjud = "Database connection error";
+    }elseif (empty($columnsLjud) || !is_array($columnsLjud)) {
+     $msgLjud = "columns Name must be defined in an indexed array";
+    }elseif(empty($tableNameLjud)){
+      $msgLjud = "Table Name is empty";
+    }else{
 
+    $columnNameLjud = implode(", ", $columnsLjud);
 
-   $sql = "INSERT INTO ljud (Titel, Forfattare, Langd, Genre, Rost, PID) VALUES ('$Titel2','$forf2', $langd, '$genre2', '$rost', $pid2)"; 
-   echo $sql;
-   if ($conn->query($sql)){
-      
-   }
+    $sqlLjud = "SELECT ".$columnNameLjud." FROM $tableNameLjud"." ORDER BY titel";
+    $resultLjud = $db->query($sqlLjud);
 
- }
+    if($resultLjud == true){ 
+      if ($resultLjud->num_rows > 0) {
+         $rowLjud = mysqli_fetch_all($resultLjud, MYSQLI_ASSOC);
+         $msgLjud = $rowLjud;
+      } else {
+         $msgLjud = "No Data Found"; 
+      }
+     }else{
+       $msgLjud = mysqli_error($db);
+     }
+     }
+     return $msgLjud;
+     }
 
-if (isset($_POST['Film'])) {
-  $Titel = $_POST["Titel"];
-  $forf = $_POST["Regi"];
-  $ISBN = $_POST["ISBN"];
-  $genre = $_POST["genre"];
-  $sidor= $_POST["sidor"];
-  $pid = $_POST["pid"];
+  // -------------------------------------------- //
+  // --------------- Film ----------------------- //
+  // -------------------------------------------- //
 
-  $sql = "INSERT INTO Bok (`Titel`, `Forfattare`, `ISBN`, `Genre`, `Antal sidor`, `PID`, `Referens`) VALUES ('$Titel','$forf', $ISBN, '$genre', $sidor, $pid, $ref)"; 
-  echo $sql;
-  if ($conn->query($sql)){   
- 
-}
-}
-$conn->close();
+  $tableNameFilm="film";
+  $columnsFilm= ['Titel', 'Regissor', 'Genre', 'Langd'];
+  //Fetching data
+  $fetchDataFilm = fetch_data_film($db, $tableNameFilm, $columnsFilm);
+  //Defining function "fetch_data"
+  function fetch_data_film($db, $tableNameFilm, $columnsFilm){
+    if(empty($db)){
+     $msgFilm = "Database connection error";
+    }elseif (empty($columnsFilm) || !is_array($columnsFilm)) {
+     $msgFilm = "columns Name must be defined in an indexed array";
+    }elseif(empty($tableNameFilm)){
+      $msgFilm = "Table Name is empty";
+    }else{
+
+    $columnNameFilm = implode(", ", $columnsFilm);
+
+    $sqlFilm = "SELECT ".$columnNameFilm." FROM $tableNameFilm"." ORDER BY titel";
+    $resultFilm = $db->query($sqlFilm);
+
+    if($resultFilm == true){ 
+      if ($resultFilm->num_rows > 0) {
+         $rowFilm = mysqli_fetch_all($resultFilm, MYSQLI_ASSOC);
+         $msgFilm = $rowFilm;
+      } else {
+         $msgFilm = "No Data Found"; 
+      }
+     }else{
+       $msgFilm = mysqli_error($db);
+     }
+     }
+     return $msgFilm;
+     }
 ?>

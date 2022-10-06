@@ -1,57 +1,128 @@
 <?php
-
-require_once "conn.php";
-
-if (isset($_POST['Bok'])) {
-    $Titel = $_POST["Titel"];
-    $forf = $_POST["forf"];
-    $ISBN = $_POST["ISBN"];
-    $genre = $_POST["genre"];
-    $sidor= $_POST["sidor"];
-    $pid = $_POST["pid"];
-    $ref = $_POST["ref"];
-
-    $sql = "INSERT INTO bok (Titel, Forfattare, ISBN, Genre, `Antal sidor`, PID, Referens) VALUES ('$Titel','$forf', $ISBN, '$genre', $sidor, $pid, $ref);"; 
-
-    if ($conn->query($sql) === TRUE) {
-      echo "New record created successfully";
-    } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-
-}
-
- if (isset($_POST['ljud'])) {
-   $Titel2 = $_POST["titel2"];
-   $forf2 = $_POST["forf2"];
-   $langd = $_POST["langd"];
-   $genre2 = $_POST["genre2"];
-   $rost = $_POST["rost"];
-   $pid2 = $_POST["pid2"];
-
-
-   $sql = "INSERT INTO ljud (Titel, Forfattare, Langd, Genre, Rost, PID) VALUES ('$Titel2','$forf2', $langd, '$genre2', '$rost', $pid2)"; 
-   echo $sql;
-   if ($conn->query($sql)){
-      
-   }
-
- }
-
-if (isset($_POST['Film'])) {
-  $Titel = $_POST["Titel"];
-  $forf = $_POST["Regi"];
-  $ISBN = $_POST["ISBN"];
-  $genre = $_POST["genre"];
-  $sidor= $_POST["sidor"];
-  $pid = $_POST["pid"];
-
-  $sql = "INSERT INTO Bok (`Titel`, `Forfattare`, `ISBN`, `Genre`, `Antal sidor`, `PID`, `Referens`) VALUES ('$Titel','$forf', $ISBN, '$genre', $sidor, $pid, $ref)"; 
-  echo $sql;
-  if ($conn->query($sql)){   
- 
-}
-}
-$conn->close();
+  require_once("lana.php");
 ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Användare</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+ <!-- BOK -->  
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+          <thead>
+            <tr>
+            <th>Titel</th>
+            <th>Författare</th>
+            <th>Genre</th>
+            <th>Antal sidor</th>
+          </thead>
+        <tbody>
+      <?php
+          if(is_array($fetchDataBok)){      
+          $sn=1;
+          foreach($fetchDataBok as $data){
+        ?>
+          <tr>
+            <td><?php echo $data['Titel']??''; ?></td>
+            <td><?php echo $data['Forfattare']??''; ?></td>
+            <td><?php echo $data['Genre']??''; ?></td>
+            <td><?php echo $data['Antalsidor']??''; ?></td>
+            <td><input type="submit" value="Låna"></td>
+          </tr>
+    
+        <?php }}?>
+        </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- LJUD -->          
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+          <thead>
+            <tr>
+            <th>Titel</th>
+            <th>Författare</th>
+            <th>Genre</th>
+            <th>Längd (i sek.)</th>
+            <th>Röst</th>
+          </thead>
+        <tbody>
+      <?php
+          if(is_array($fetchDataLjud)){      
+          $sn=1;
+          foreach($fetchDataLjud as $data){
+        ?>
+          <tr>
+            <td><?php echo $data['Titel']??''; ?></td>
+            <td><?php echo $data['Forfattare']??''; ?></td>
+            <td><?php echo $data['Genre']??''; ?></td>
+            <td><?php echo $data['Langd']??''; ?></td>
+            <td><?php echo $data['Rost']??''; ?></td>
+            <td><input type="submit" value="Låna"></td>
+          </tr>
+
+        <?php }}?>
+        </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- FILM -->  
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+          <thead>
+            <tr>
+            <th>Titel</th>
+            <th>Regissör</th>
+            <th>Genre</th>
+            <th>Längd (i sek.)</th>
+          </thead>
+        <tbody>
+      <?php
+          if(is_array($fetchDataFilm)){      
+          $sn=1;
+          foreach($fetchDataFilm as $data){
+        ?>
+          <tr>
+            <td><?php echo $data['Titel']??''; ?></td>
+            <td><?php echo $data['Regissor']??''; ?></td>
+            <td><?php echo $data['Genre']??''; ?></td>
+            <td><?php echo $data['Langd']??''; ?></td>
+            <td><input type="submit" value="Låna"></td>
+          </tr>
+
+        <?php }}?>
+        </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+  </div>
+</body>
+</html>
+
