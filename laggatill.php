@@ -2,53 +2,67 @@
 
   require "conn.php";
 
+  if (isset($_POST['Person'])) {
+    $namn = $_POST["namn"];
+    $passw = $_POST["passw"];
+    $admin= isset($_POST['admin']) ? 1 : 0; 
+
+    $sqlPerson = "INSERT INTO person (Namn, Password, Admin) VALUES ('$namn', '$passw',$admin)"; 
+  
+    if ($conn->query($sqlPerson) == TRUE) {
+      echo "DET FUNKA!!!!";
+    } else {
+      echo "DU DE BLEV FEL!" . $sqlPerson . "<br>" . $conn->error;
+    }
+}
+
+
   if (isset($_POST['Bok'])) {
       $Titel = $_POST["Titel"];
       $forf = $_POST["forf"];
       $ISBN = $_POST["ISBN"];
       $genre = $_POST["genre"];
       $sidor= $_POST["sidor"];
-      $pid = $_POST["pid"];
-      $ref = $_POST["ref"];
+      $typ = $_POST["typ"];
+      $ref = isset($_POST['ref']) ? 1 : 0; 
 
-      $sql = "INSERT INTO bok (Titel, Forfattare, ISBN, Genre, `Antal sidor`, PID, Referens) VALUES ('$Titel','$forf', $ISBN, '$genre', $sidor, $pid, $ref);"; 
+      $sqlBok = "INSERT INTO bok (Titel, Forfattare, ISBN, Genre, Antalsidor, Typ, Referens) VALUES ('$Titel','$forf', $ISBN, '$genre', $sidor, '$typ', '$ref')"; 
 
-      if ($conn->query($sql) === TRUE) {
+      if ($conn->query($sqlBok) == TRUE) {
         echo "New record created successfully";
       } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sqlBok . "<br>" . $conn->error;
       }
   }
 
   if (isset($_POST['ljud'])) {
-      $Titel2 = $_POST["titel2"];
-      $forf2 = $_POST["forf2"];
+      $Titel = $_POST["titel"];
+      $forf = $_POST["forf"];
       $langd = $_POST["langd"];
-      $genre2 = $_POST["genre2"];
+      $genre = $_POST["genre"];
       $rost = $_POST["rost"];
-      $pid2 = $_POST["pid2"];
-      $sql = "INSERT INTO ljud (Titel, Forfattare, Langd, Genre, Rost, PID) VALUES ('$Titel2','$forf2', $langd, '$genre2', '$rost', $pid2)"; 
       
-      if ($conn->query($sql) === TRUE) {
+      $sqlLjud = "INSERT INTO ljud (Titel, Forfattare, Langd, Genre, Rost) VALUES ('$Titel','$forf', $langd, '$genre', '$rost')"; 
+      
+      if ($conn->query($sqlLjud) == TRUE) {
         echo "New record created successfully";
       } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sqlLjud . "<br>" . $conn->error;
       }
   }
 
   if (isset($_POST['Film'])) {
-      $Titel3 = $_POST["titel3"];
+      $Titel = $_POST["titel"];
       $Regi = $_POST["regi"];
-      $Langd = $_POST["langd2"];
-      $Genre3 = $_POST["genre3"];
-      $pid3 = $_POST["pid3"];
+      $Langd = $_POST["langd"];
+      $Genre = $_POST["genre"];
 
-      $sql = "INSERT INTO Film (Titel, Regissor, Langd, Genre, PID) VALUES ('$Titel3', '$Regi', $Langd, '$Genre3', $pid3)"; 
+      $sqlFilm = "INSERT INTO Film (Titel, Regissor, Langd, Genre) VALUES ('$Titel', '$Regi', $Langd, '$Genre')"; 
     
-      if ($conn->query($sql) === TRUE) {
+      if ($conn->query($sqlFilm) == TRUE) {
         echo "New record created successfully";
       } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sqlFilm . "<br>" . $conn->error;
       }
   }
 ?>
