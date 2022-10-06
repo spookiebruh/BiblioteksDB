@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.person,
+.bok,
+.Ljud,
+.Film,
+[type = submit],
+[type = checkbox] { 
+    padding: 12px;
+
+}
+
+.Film{
+    
+}
+
+body{
+    height: 100vh;
+    background-color: rgb(156, 173, 231);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+form{
+    display: flex;
+    flex-flow: column;
+    border-radius: 10px;
+    font-family: system-ui, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.control {
+    font-family: system-ui, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.1;
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+}
+
+.box{
+    height: 350px;
+    width: 200px;
+    margin: 10px;
+    background-color: rgb(53, 85, 145);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: rgb(49, 64, 153) 5px 8px 8px;
+}
+
+p{
+    color:white;
+}
