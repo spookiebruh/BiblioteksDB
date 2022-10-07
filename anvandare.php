@@ -9,7 +9,7 @@
   //Defining variables
   $db = $conn;
   $tableNameBok="bok";
-  $columnsBok= ['Titel', 'Forfattare', 'Genre', 'Antalsidor'];
+  $columnsBok= ['BID', 'Titel', 'Forfattare', 'Genre', 'Antalsidor'];
   //Fetching data
   $fetchDataBok = fetch_data($db, $tableNameBok, $columnsBok);
   //Defining function "fetch_data"
@@ -40,12 +40,12 @@
        }
        return $msg;
        }
-    // -------------------------------------------- //
+  // -------------------------------------------- //
   // --------------- Ljud ----------------------- //
   // -------------------------------------------- //
 
   $tableNameLjud="ljud";
-  $columnsLjud= ['Titel', 'Forfattare', 'Genre', 'Langd', 'Rost'];
+  $columnsLjud= ['LID', 'Titel', 'Forfattare', 'Genre', 'Langd', 'Rost'];
   //Fetching data
   $fetchDataLjud = fetch_data_ljud($db, $tableNameLjud, $columnsLjud);
   //Defining function "fetch_data"
@@ -82,7 +82,7 @@
   // -------------------------------------------- //
 
   $tableNameFilm="film";
-  $columnsFilm= ['Titel', 'Regissor', 'Genre', 'Langd'];
+  $columnsFilm= ['FID', 'Titel', 'Regissor', 'Genre', 'Langd'];
   //Fetching data
   $fetchDataFilm = fetch_data_film($db, $tableNameFilm, $columnsFilm);
   //Defining function "fetch_data"
@@ -144,23 +144,17 @@
           </thead>
         <tbody>
       <?php
-
-
-          $db = $conn;
-          $tableNameBok="bok";
-          $columnsBok= ['BID', 'Titel', 'Forfattare', 'Genre', 'Antalsidor'];
-
           $fetchDataBok = fetch_data($db, $tableNameBok, $columnsBok);
           if(is_array($fetchDataBok)){      
           $sn=1;
           foreach($fetchDataBok as $data){
         ?>
-          <form method="post" action="lana.php">
+          <form method="post" action="lanabok.php">
             <input type="hidden" name="Bocker">
             <td><?php echo $_SESSION["BID"] = $data['BID']??''; ?></td>
-            <td><?php echo $_SESSION["Titel"] = $data['Titel']??''; ?></td>
-            <td><?php echo $_SESSION["Forfattare"] = $data['Forfattare']??''; ?></td>
-            <td><?php echo $_SESSION["Genre"] = $data['Genre']??''; ?></td>
+            <td><?php echo $_SESSION["bokTitel"] = $data['Titel']??''; ?></td>
+            <td><?php echo $_SESSION["bokForfattare"] = $data['Forfattare']??''; ?></td>
+            <td><?php echo $_SESSION["bokGenre"] = $data['Genre']??''; ?></td>
             <td><?php echo $_SESSION["Antalsidor"] = $data['Antalsidor']??''; ?></td>
             <td><input type="submit" value="Låna"></td>
           </form>
@@ -181,7 +175,8 @@
         <div class="table-responsive">
           <table class="table table-bordered">
           <thead>
-            <tr>
+            <tr>  
+            <th>ID</th>
             <th>Titel</th>
             <th>Författare</th>
             <th>Genre</th>
@@ -194,14 +189,16 @@
           $sn=1;
           foreach($fetchDataLjud as $data){
         ?>
-          <tr>
-            <td><?php echo $data['Titel']??''; ?></td>
-            <td><?php echo $data['Forfattare']??''; ?></td>
-            <td><?php echo $data['Genre']??''; ?></td>
-            <td><?php echo $data['Langd']??''; ?></td>
-            <td><?php echo $data['Rost']??''; ?></td>
+          <form method="post" action="lanaljud.php">
+            <input type="hidden" name="Ljudbocker">
+            <td><?php echo $_SESSION["LID"] = $data['LID']??''; ?></td>
+            <td><?php echo $_SESSION["ljudTitel"] = $data['Titel']??''; ?></td>
+            <td><?php echo $_SESSION["ljudForfattare"] = $data['Forfattare']??''; ?></td>
+            <td><?php echo $_SESSION["ljudGenre"] = $data['Genre']??''; ?></td>
+            <td><?php echo $_SESSION["ljudLangd"] = $data['Langd']??''; ?></td>
+            <td><?php echo $_SESSION["Rost"] = $data['Rost']??''; ?></td>
             <td><input type="submit" value="Låna"></td>
-          </tr>
+          </form>
 
         <?php }}?>
         </tbody>
@@ -220,6 +217,7 @@
           <table class="table table-bordered">
           <thead>
             <tr>
+            <th>ID</th>
             <th>Titel</th>
             <th>Regissör</th>
             <th>Genre</th>
@@ -231,13 +229,15 @@
           $sn=1;
           foreach($fetchDataFilm as $data){
         ?>
-          <tr>
-            <td><?php echo $data['Titel']??''; ?></td>
-            <td><?php echo $data['Regissor']??''; ?></td>
-            <td><?php echo $data['Genre']??''; ?></td>
-            <td><?php echo $data['Langd']??''; ?></td>
+          <form method="post" action="lanafilm.php">
+            <input type="hidden" name="Filmer"> 
+            <td><?php echo $_SESSION["FID"] = $data['FID']??''; ?></td>
+            <td><?php echo $_SESSION["filmTitel"] = $data['Titel']??''; ?></td>
+            <td><?php echo $_SESSION["Regissor"] = $data['Regissor']??''; ?></td>
+            <td><?php echo $_SESSION["filmGenre"] = $data['Genre']??''; ?></td>
+            <td><?php echo $_SESSION["filmLangd"] = $data['Langd']??''; ?></td>
             <td><input type="submit" value="Låna"></td>
-          </tr>
+          </form>
 
         <?php }}?>
         </tbody>
