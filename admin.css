@@ -1,16 +1,20 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: system-ui, sans-serif;
 }
 
 .person,
 .bok,
 .Ljud,
 .Film,
-[type = submit],
-[type = checkbox] { 
+[type = submit] { 
     padding: 12px;
+}
 
+[type = submit],
+[type = checkbox] {
+    cursor: pointer;
 }
                     
 body{
@@ -28,15 +32,12 @@ form{
     display: flex;
     flex-flow: column;
     border-radius: 10px;
-    font-family: system-ui, sans-serif;
     font-size: 2rem;
     font-weight: bold;
 }
 
-.control {
-    font-family: system-ui, sans-serif;
+.check{
     font-size: 2rem;
-    font-weight: bold;
     line-height: 1.1;
     display: grid;
     grid-template-columns: 1em auto;
@@ -47,17 +48,21 @@ form{
     height: 350px;
     margin: 10px;
     background-color: rgb(53, 85, 145);
-    padding: 50px;
+    padding: 30px;
+    padding-bottom: 60px;
     border-radius: 10px;
     box-shadow: rgb(49, 64, 153) 5px 8px 8px;
+    color: white;
 }
 
-.print,
-.print2,
-.print3,
-.print4{
 
-    width: 500px;;
+
+
+
+.print{
+    position: relative;
+    margin-right:100px;
+    width: 500px;
     margin: 10px;
     background-color: rgb(53, 85, 145);
     padding: 50px;
@@ -66,7 +71,40 @@ form{
     color:white;
 }
 
-p,
-.print p{
-    color:white;
+.print h2{
+    text-align: left;
+
 }
+
+.container{
+    position: absolute;
+    top: -133px;
+    right:0;
+    margin:10px;
+    margin-top: 8.5%;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.rubrik{
+    position: absolute;
+    top:0px;
+    left: 0;
+    right:0;
+    text-align: center;
+    font-size: 50px;
+    color: white;
+}
+
+.text2 {
+    position: absolute;
+    top: 15%;
+    left: 35.5%;
+    width: 600px;
+    font-size: 40px;
+    color: white;
+    font-weight: 700;
+}
+
+
+
