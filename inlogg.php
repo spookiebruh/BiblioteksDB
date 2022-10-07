@@ -55,10 +55,18 @@
         }
     }
     ?>
-        <form method="post">
-        Användarnamn: <input required type="text" name="Namn" placeholder="Skriv in ett användarnamn" value="<?php echo $Name; ?>"><span class="error"> <?php echo $NameErr; ?></span><br><br>
-        Lösenord: <input required type="password" name="Password" placeholder="Skriv in ett lösenord" value="<?php echo $Password; ?>"><span class="error"> <?php echo $PasswordErr; ?></span><br><br>
-        <input type="submit" value="Skicka">
-        </form>
+    <div class="block2">
+    <div class="rubrik"><h2>Bibliotek</h2></div>
+        <div class="block">
+            <form method="post">
+                <div class="text"><p2>Logga in:<p2></div>
+                <input required type="text" name="Namn" placeholder="Skriv in ett användarnamn" value="<?php echo $Name; ?>"><span class="error"> <?php echo $NameErr; ?></span><br><br>
+                <input required type="password" name="Password" placeholder="Skriv in ett lösenord" value="<?php echo $Password; ?>"><span class="error"> <?php echo $PasswordErr; ?></span><br><br>
+                <input type="submit" value="Skicka">
+                <input type="button" value="Glömt lösenord?">
+                <input type="button" value="Skapa nytt konto">
+            </form> 
+        </div>
+    </div>
 </body>
 </html>

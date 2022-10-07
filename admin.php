@@ -13,7 +13,7 @@
     <title>Admin Sida</title>
 </head>
 <div class="rubrik"><h2>Admin Sida</h2><br></div>
-<div class="text2">Välkommen till adminsidan!<br>Här kan du lägga till <bold>Användare / Admin du kan även lägga till bok, ljudbok och Film. Du kan göra allt det på vänster sida.</div>
+<div class="text2">Välkommen till adminsidan!<br>Här kan du lägga till användare / admin, du kan även lägga till bok, ljudbok och film. Du kan göra allt det på vänstersida.</div>
     <body>
      
         <div class="box">
