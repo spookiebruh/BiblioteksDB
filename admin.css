@@ -53,6 +53,7 @@ form{
     border-radius: 10px;
     box-shadow: rgb(49, 64, 153) 5px 8px 8px;
     color: white;
+    border-style: groove;
 }
 
 
@@ -69,6 +70,7 @@ form{
     border-radius: 10px;
     box-shadow: rgb(49, 64, 153) 5px 8px 8px;
     color:white;
+    border-style: groove;
 }
 
 .print h2{

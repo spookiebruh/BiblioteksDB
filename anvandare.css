@@ -33,13 +33,13 @@ body{
     text-align: center;
     font-size: 50px;
     text-decoration:underline; 
-    font-family: system-ui, sans-serif;
+
     color: white;
 }
 
 [type="submit"] {
     padding: 12px;
-    font-family: system-ui, sans-serif;
+
 }
 
 .rubrik2{
