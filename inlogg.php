@@ -15,7 +15,7 @@
         $PasswordErr = false;
 
         if(isset($_POST['Namn']) && isset($_POST['Password'])){
-        require_once('db.php');
+        require_once('conn.php');
         
         $anv = $_POST['Namn'];
         $pass = $_POST['Password'];
