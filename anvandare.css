@@ -5,8 +5,10 @@
 }
 
 body{
-    background-color: rgb(156, 173, 231);
-    
+    background-color: rgb(218, 183, 143);
+
+
+
 }
 
 .block{
@@ -17,7 +19,9 @@ body{
     padding: 50px;
     border-radius: 10px;
     background-color: rgb(53, 85, 145);
-    
+    background-color: rgb(175, 130, 71);
+
+
 }
 
 .block2{
@@ -33,12 +37,13 @@ body{
     text-align: center;
     font-size: 50px;
     text-decoration:underline; 
-
+    font-family: system-ui, sans-serif;
     color: white;
 }
 
 [type="submit"] {
     padding: 12px;
+    font-family: system-ui, sans-serif;
 
 }
 
