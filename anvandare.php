@@ -1,7 +1,7 @@
 <?php
-  require_once("conn.php");
   session_start();
-
+  require_once("conn.php");
+  
   // -------------------------------------------- //
   // --------------- Bok ------------------------ //
   // -------------------------------------------- //
@@ -124,6 +124,135 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Användare</title>
 
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="anvandare.css">
+</head>
+<body>
+<div class="block2">
+ <!-- BOK -->  
+ <div class="block">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+            <thead>
+              <tr>
+              <th>ID</th>
+              <th>Titel (Bok)</th>
+              <th>Författare</th>
+              <th>Genre</th>
+              <th>Antal sidor</th>
+            </thead>
+          <tbody>
+        <?php
+            $fetchDataBok = fetch_data($db, $tableNameBok, $columnsBok);
+            if(is_array($fetchDataBok)){      
+            $sn=1;
+            foreach($fetchDataBok as $data){
+          ?>
+            <form method="post" action="lanabok.php">
+              <input type="hidden" name="Bocker">
+              <td><?php echo $_SESSION["BID"] = $data['BID']??''; ?></td>
+              <td><?php echo $_SESSION["bokTitel"] = $data['Titel']??''; ?></td>
+              <td><?php echo $_SESSION["bokForfattare"] = $data['Forfattare']??''; ?></td>
+              <td><?php echo $_SESSION["bokGenre"] = $data['Genre']??''; ?></td>
+              <td><?php echo $_SESSION["Antalsidor"] = $data['Antalsidor']??''; ?></td>
+              <td><input type="submit" value="Låna"></td>
+            </form>
+      
+          <?php }}?>
+          </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <!-- LJUD -->      
+
+  <div class="block">         
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+            <thead>
+              <tr>  
+              <th>ID</th>
+              <th>Titel (Ljudbok)</th>
+              <th>Författare</th>
+              <th>Genre</th>
+              <th>Längd (i sek.)</th>
+              <th>Röst</th>
+            </thead>
+          <tbody>
+        <?php
+            if(is_array($fetchDataLjud)){      
+            $sn=1;
+            foreach($fetchDataLjud as $data){
+          ?>
+            <form method="post" action="lanaljud.php">
+              <input type="hidden" name="Ljudbocker">
+              <td><?php echo $_SESSION["LID"] = $data['LID']??''; ?></td>
+              <td><?php echo $_SESSION["ljudTitel"] = $data['Titel']??''; ?></td>
+              <td><?php echo $_SESSION["ljudForfattare"] = $data['Forfattare']??''; ?></td>
+              <td><?php echo $_SESSION["ljudGenre"] = $data['Genre']??''; ?></td>
+              <td><?php echo $_SESSION["ljudLangd"] = $data['Langd']??''; ?></td>
+              <td><?php echo $_SESSION["Rost"] = $data['Rost']??''; ?></td>
+              <td><input type="submit" value="Låna"></td>
+            </form>
+
+          <?php }}?>
+          </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <!-- FILM -->  
+<div class="block">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+            <thead>
+              <tr>
+              <th>ID</th>
+              <th>Titel (Film)</th>
+              <th>Regissör</th>
+              <th>Genre</th>
+              <th>Längd (i sek.)</th>
+            </thead>
+          <tbody>
+        <?php
+            if(is_array($fetchDataFilm)){      
+            $sn=1;
+            foreach($fetchDataFilm as $data){
+          ?>
+            <form method="post" action="lanafilm.php">
+              <input type="hidden" name="Filmer"> 
+              <td><?php echo $_SESSION["FID"] = $data['FID']??''; ?></td>
+              <td><?php echo $_SESSION["filmTitel"] = $data['Titel']??''; ?></td>
+              <td><?php echo $_SESSION["Regissor"] = $data['Regissor']??''; ?></td>
+              <td><?php echo $_SESSION["filmGenre"] = $data['Genre']??''; ?></td>
+              <td><?php echo $_SESSION["filmLangd"] = $data['Langd']??''; ?></td>
+              <td><input type="submit" value="Låna"></td>
+            </form>
+
+          <?php }}?>
+          </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+ </div>
+
+
   <link rel="stylesheet" href="anvandare.css">
 </head>
 <body>
@@ -169,6 +298,7 @@
                 <td><?php echo $data['Langd']??''; ?></td>
                 <td><input type="submit" value="Låna"></td>
               </tr>
+
 
 
 </body>
