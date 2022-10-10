@@ -3,8 +3,6 @@
     require_once('conn.php');
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +13,7 @@
     <title>Inlogg</title>
 </head>
 <body>
+
     <?php
         $Name = "";
         $NameErr = false;
@@ -63,10 +62,20 @@
             }
         }
     ?>
-        <form method="post">
-        Användarnamn: <input required type="text" name="Namn" placeholder="Skriv in ett användarnamn" value="<?php echo $Name; ?>"><span class="error"> <?php echo $NameErr; ?></span><br><br>
-        Lösenord: <input required type="password" name="Password" placeholder="Skriv in ett lösenord" value="<?php echo $Password; ?>"><span class="error"> <?php echo $PasswordErr; ?></span><br><br>
-        <input type="submit" value="Skicka">
-        </form>
+   
+    <div class="block2">
+    <div class="rubrik">Bibliotek</div>
+        <div class="block">
+            
+        
+            <form method="post">
+            <input required type="text" name="Namn" placeholder="Skriv in ett användarnamn" value="<?php echo $Name; ?>"><span class="error"> <?php echo $NameErr; ?></span><br><br>
+            <input required type="password" name="Password" placeholder="Skriv in ett lösenord" value="<?php echo $Password; ?>"><span class="error"> <?php echo $PasswordErr; ?></span><br><br>
+            <input type="submit" value="Logga in">
+            <a href="">Glömt lösenord?</a>
+            <a href="">Skapa konto?</a>
+            </form>
+        </div>
+        </div>
 </body>
 </html>

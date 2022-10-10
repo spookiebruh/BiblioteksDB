@@ -13,7 +13,7 @@
     <title>Admin Sida</title>
 </head>
 <div class="rubrik"><h2>Admin Sida</h2><br></div>
-<div class="text2">Välkommen till adminsidan!<br>Här kan du lägga till användare / admin, du kan även lägga till bok, ljudbok och film. Du kan göra allt det på vänstersida.</div>
+
     <body>
      
         <div class="box">
@@ -25,8 +25,7 @@
                     <label class="check"><input type="checkbox" class="person" name="admin" placeholder="Admin eller inte?"><p>Admin</p></label>
                     <input type="submit">
             </form> 
-        </div>
-        <div class="box">
+       
             <form method="post" action="laggatill.php"> 
                 <p>Lägg Till Bok</p>
                 <input type="hidden" name="Bok">
@@ -39,8 +38,7 @@
                 <label class="check"><input type="checkbox" id="class" name="ref" Min="0" Max="1" placeholder="Referens" required><p>Referens</p></label>
                 <input type="submit">
             </form>
-        </div>
-        <div class="box"> 
+        
             <form method="post" action="laggatill.php">  
                 <p>Lägg Till Ljudbok</p>
                 <input type="hidden" name="ljud">
@@ -51,8 +49,7 @@
                 <input type="text" class="Ljud" name="rost" max="100" placeholder="Röst" required>
                 <input type="submit">
             </form> 
-        </div> 
-        <div class="box">
+    
             <form method="post" action="laggatill.php">  
                 <p>Lägg Till Film</p><br>
                 <input type="hidden" name="Film">
@@ -82,8 +79,7 @@
                     echo "0 results";
                     }
                 ?>
-            </div>
-            <div class="print">
+
                 <h2>Bok information</h2>
                 <?php
                     // Bok print
@@ -118,8 +114,7 @@
                     echo "0 results";
                     }
                 ?>
-            </div>
-            <div class="print">
+            
                 <h2>Filmer information</h2>
                 <?php
                     // Film print

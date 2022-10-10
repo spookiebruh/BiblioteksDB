@@ -18,14 +18,16 @@
 }
                     
 body{
+    
     height: 100vh;
-    background-color: rgb(156, 173, 231);
+    background-color: rgb(231, 231, 231);
     display: flex;
     justify-content: center;
     align-items: stretch;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    align-content: flex-start;
+    align-content: center;
+
 }
 
 form{
@@ -45,7 +47,7 @@ form{
 }
 
 .box{
-    height: 350px;
+
     margin: 10px;
     background-color: rgb(53, 85, 145);
     padding: 30px;
@@ -56,21 +58,15 @@ form{
     border-style: groove;
 }
 
-
-
-
-
 .print{
-    position: relative;
-    margin-right:100px;
+    justify-content: center;
     width: 500px;
-    margin: 10px;
     background-color: rgb(53, 85, 145);
     padding: 50px;
     border-radius: 10px;
     box-shadow: rgb(49, 64, 153) 5px 8px 8px;
     color:white;
-    border-style: groove;
+
 }
 
 .print h2{
@@ -79,13 +75,8 @@ form{
 }
 
 .container{
-    position: absolute;
-    top: -133px;
-    right:0;
-    margin:10px;
-    margin-top: 8.5%;
-    align-items: flex-end;
-    flex-direction: column;
+    display: flex;
+    
 }
 
 .rubrik{

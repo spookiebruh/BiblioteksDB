@@ -290,6 +290,9 @@
               if(is_array($fetchDataFilm)){      
               $sn=1;
               foreach($fetchDataFilm as $data){
+
+                }
+              }
             ?>
               <tr>
                 <td><?php echo $data['Titel']??''; ?></td>
