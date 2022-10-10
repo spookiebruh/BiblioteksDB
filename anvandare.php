@@ -261,7 +261,7 @@
  <!-- BOK -->  
 
 
-            <?php }}?>
+            
             </tbody>
             </table>
           </div>
