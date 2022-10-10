@@ -76,7 +76,7 @@ input[type=text], input[type=password] {
 .rubrik {
   font-size: 80px;
   background: -webkit-linear-gradient(rgb(255, 51, 51), rgb(120, 60, 177));
-  -webkit-background-clip: text;
+
   -webkit-text-fill-color: transparent;
 }
 
