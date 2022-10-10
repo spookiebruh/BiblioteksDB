@@ -7,6 +7,7 @@
 body{
     background-color: rgb(218, 183, 143);
 
+
 }
 
 .block{
@@ -40,6 +41,7 @@ body{
 [type="submit"] {
     padding: 12px;
     font-family: system-ui, sans-serif;
+
 }
 
 .rubrik2{

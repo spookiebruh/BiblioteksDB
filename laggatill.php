@@ -1,17 +1,49 @@
+<link rel="stylesheet" href="laggatill.css">
 <?php
+
 
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "bibliotek";
 
-// kopplar till databas
-$conn = new mysqli($servername, $username, $password, $dbname);
-// kollar om den blir fel när du kopplar
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+  require "conn.php";
+
+
+    echo"<div class='text'>";
+      echo"<p>";
+      if (isset($_POST['Person'])) {
+          $namn = $_POST["namn"];
+          $passw = $_POST["passw"];
+          $admin= isset($_POST['admin']) ? 1 : 0; 
+
+          $sqlPerson = "INSERT INTO person (Namn, Password, Admin) VALUES ('$namn', '$passw',$admin)"; 
+        
+          if ($conn->query($sqlPerson) == TRUE) {
+            echo "Du har lagt till en ";
+          } else {
+            echo "DU DE BLEV FEL!" . $sqlPerson . "<br>" . $conn->error;
+          }
+      echo"</p>";
+    echo"</div>";
+  echo"<div class='usertext'>";
+    if($admin == 1) {
+      echo"Admin"; 
+    } else {
+      echo"Användare";
+    }
+  echo"</div>";
+
+  ?>
+  <script>
+  setTimeout(() => {
+    location.replace("admin.php")
+  }, "1500")
+  </script>
+  <?php
 
 }
+
 
 if (isset($_POST['Bok'])) {
     $Titel = $_POST["Titel"];
@@ -19,36 +51,62 @@ if (isset($_POST['Bok'])) {
     $ISBN = $_POST["ISBN"];
     $genre = $_POST["genre"];
     $sidor= $_POST["sidor"];
+
     
     $ref = $_POST["ref"];
 
     $sql = "INSERT INTO bok (Titel, Forfattare, ISBN, Genre, `Antalsidor`, Referens) VALUES ('$Titel','$forf', $ISBN, '$genre', $sidor, $ref);"; 
 
-    if ($conn->query($sql) === TRUE) {
-      echo "New record created successfully";
+    $typ = $_POST["typ"];
+    $ref = isset($_POST['ref']) ? 1 : 0; 
+
+    $sqlBok = "INSERT INTO bok (Titel, Forfattare, ISBN, Genre, Antalsidor, Typ, Referens) VALUES ('$Titel','$forf', $ISBN, '$genre', $sidor, '$typ', '$ref')"; 
+
+
+    if ($conn->query($sqlBok) == TRUE) {
+      echo "Du har lagt till en bok";
     } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+      echo "Det blev något fel i: " . $sqlBok . "<br>" . $conn->error;
     }
-
-
 }
 
- if (isset($_POST['ljud'])) {
-   $Titel2 = $_POST["titel2"];
-   $forf2 = $_POST["forf2"];
-   $langd = $_POST["langd"];
-   $genre2 = $_POST["genre2"];
-   $rost = $_POST["rost"];
-   $pid2 = $_POST["pid2"];
+if (isset($_POST['ljud'])) {
+    $Titel = $_POST["titel"];
+    $forf = $_POST["forf"];
+    $langd = $_POST["langd"];
+    $genre = $_POST["genre"];
+    $rost = $_POST["rost"];
+    
+    $sqlLjud = "INSERT INTO ljud (Titel, Forfattare, Langd, Genre, Rost) VALUES ('$Titel','$forf', '$langd', '$genre', '$rost')"; 
+    
+    if ($conn->query($sqlLjud) == TRUE) {
+      echo "Du har lagt till en Ljudbok";
+    } else {
+      echo "Det blev något fel i: " . $sqlLjud . "<br>" . $conn->error;
+    }
+}
+
+if (isset($_POST['Film'])) {
+    $Titel = $_POST["titel"];
+    $Regi = $_POST["regi"];
+    $Langd = $_POST["langd"];
+    $Genre = $_POST["genre"];
+
+    
+    $sqlFilm = "INSERT INTO Film (Titel, Regissor, Langd, Genre) VALUES ('$Titel', '$Regi', '$Langd', '$Genre')"; 
+  
+    if ($conn->query($sqlFilm) == TRUE) {
+      echo "Du har lagt till en Ljudbok";
+    } else {
+      echo "Det blev något fel i: " . $sqlFilm . "<br>" . $conn->error;
+    }
+}
+
+?>
 
 
-   $sql = "INSERT INTO ljud (Titel, Forfattare, Langd, Genre, Rost, PID) VALUES ('$Titel2','$forf2', $langd, '$genre2', '$rost', $pid2)"; 
-   echo $sql;
-   if ($conn->query($sql)){
-      
-   }
 
- }
+
 
 if (isset($_POST['Film'])) {
   $Titel = $_POST["Titel"];
@@ -66,3 +124,4 @@ if (isset($_POST['Film'])) {
 }
 $conn->close();
 ?>
+

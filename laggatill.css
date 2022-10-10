@@ -1,0 +1,22 @@
+*{
+    background-color: rgb(156, 173, 231);
+    font-family: system-ui, sans-serif;
+}
+
+.text {
+    position: relative;
+    top: 30%;
+    text-align: center;
+    font-size: 100px;
+
+}
+
+.usertext {
+    position: relative;
+    top: 30%;
+    text-align: center;
+    color: red;
+    font-size: 100px;
+
+}
+
