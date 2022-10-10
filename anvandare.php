@@ -1,5 +1,5 @@
 <?php
-  session_start();
+ 
   require_once("conn.php");
   
   // -------------------------------------------- //
@@ -138,7 +138,7 @@
             <table class="table table-bordered">
             <thead>
               <tr>
-              <th>ID</th>
+              
               <th>Titel (Bok)</th>
               <th>Författare</th>
               <th>Genre</th>
@@ -153,12 +153,14 @@
           ?>
             <form method="post" action="lanabok.php">
               <input type="hidden" name="Bocker">
-              <td><?php echo $_SESSION["BID"] = $data['BID']??''; ?></td>
-              <td><?php echo $_SESSION["bokTitel"] = $data['Titel']??''; ?></td>
+              <input type="hidden" name="BID" value="<?php echo $data['BID']; ?>">
+              <input type="hidden" name="bokTitel" value="<?php echo $data['Titel']; ?>">
+              <td><?php echo $data['Titel']??''; ?></td>
               <td><?php echo $_SESSION["bokForfattare"] = $data['Forfattare']??''; ?></td>
               <td><?php echo $_SESSION["bokGenre"] = $data['Genre']??''; ?></td>
               <td><?php echo $_SESSION["Antalsidor"] = $data['Antalsidor']??''; ?></td>
               <td><input type="submit" value="Låna"></td>
+              <td><input type="submit" value="Lämna tillbaks" name="lamnatbx"></td>
             </form>
       
           <?php }}?>
@@ -261,7 +263,7 @@
  <!-- BOK -->  
 
 
-            <?php }}?>
+      
             </tbody>
             </table>
           </div>
@@ -298,7 +300,7 @@
                 <td><?php echo $data['Langd']??''; ?></td>
                 <td><input type="submit" value="Låna"></td>
               </tr>
-
+              <?php }}?>
 
 
 </body>
