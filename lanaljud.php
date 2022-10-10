@@ -47,23 +47,24 @@
      $compareLjud = $db->query ("SELECT ljudID FROM lanelista WHERE lanelista.ljudID = ".$_SESSION["LID"]."");
      
      
-     if ($compareLjud -> num_rows > 0){
-         header("location: anvandare.php");
-         }
-     else{
-         if (isset($_POST['Ljudbocker'])) {
-           $LID = $_SESSION["LID"];
-           $sqlLjud = "INSERT INTO lanelista (ljudID) VALUES ($LID)"; 
-             
-           echo ($sqlLjud);
+    if ($compareLjud -> num_rows > 0){
+        header("location: anvandare.php");
+        }
+    else{
+        if (isset($_POST['Ljudbocker'])) {
+          $LID = $_SESSION["LID"];
+          $dateLjud = date("Y-m-d");
+          $slutdateLjud = date('Y-m-d', strtotime("+1 months", strtotime($dateLjud)));;
+          
+          $sqlLjud = "INSERT INTO lanelista (ljudID, startdatum, slutdatum) VALUES ($LID, '$dateLjud', '$slutdateLjud')"; 
+  
+            if ($conn->query($sqlLjud) == TRUE) {
+              echo "Du lånade ".$_SESSION["ljudTitel"]."!";
+            } else {
+              echo "Error: " . $sqlLjud . "<br>" . $conn->error;
+            }
+      }
+  
+        }
    
-             if ($conn->query($sqlLjud) == TRUE) {
-               echo "Du lånade ".$_SESSION["ljudTitel"]."!";
-             } else {
-               echo "Error: " . $sqlLjud . "<br>" . $conn->error;
-             }
-       }
-   
-         }
-
     ?>

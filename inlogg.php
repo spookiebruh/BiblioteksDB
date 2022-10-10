@@ -1,3 +1,10 @@
+<?php
+session_start();
+require_once('conn.php');
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,45 +22,46 @@
         $PasswordErr = false;
 
         if(isset($_POST['Namn']) && isset($_POST['Password'])){
-        require_once('db.php');
-        
-        $anv = $_POST['Namn'];
-        $pass = $_POST['Password'];
-        
-        $sql = "SELECT * FROM person WHERE Namn='$anv' and Password='$pass'";
-        $result = $conn->query($sql);
-        $print = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        print_r($print);
+            
+            
+            $_SESSION['anv'] = $_POST['Namn'];
+            $_SESSION['pass'] = $_POST['Password'];
 
-        // Initiera variabler och ställ in på tomma strängar
-        $_POST["Namn"] = $anv;
-        $_POST["Password"] = $pass;
-        $NameErr = $PasswordErr = "";
-        
-        if ($result->num_rows!=1) {
-            header("location: inlogg.php");
-        }
-        else{
+            $anv = $_SESSION['anv'];
+            $pass = $_SESSION['pass'];
             
-            $sql = "SELECT * FROM person WHERE Namn=? and Password=?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ss",$anv, $pass);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $row = $result->fetch_assoc();
-            $id = $row['Admin'];
+            $sql = "SELECT * FROM person WHERE Namn='$anv' and Password='$pass'";
+            $result = $conn->query($sql);
+            $print = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            print_r($print);
+
+            // Initiera variabler och ställ in på tomma strängar
+            $NameErr = $PasswordErr = "";
             
-            $_POST['id'] = $id;
-            print_r($id);
-            if (intval($id) == 1){
-                header("location: admin.php");
+            if ($result->num_rows!=1) {
+                // header("location: inlogg.php");
             }
             else{
-                header("location: anvandare.php");
-            }
+                
+                $sql = "SELECT * FROM person WHERE Namn=? and Password=?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("ss",$anv, $pass);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                $id = $row['Admin'];
+                
+                $_POST['id'] = $id;
+                print_r($id);
+                if (intval($id) == 1){
+                    header("location: admin.php");
+                }
+                else{
+                    header("location: anvandare.php");
+                }
 
+            }
         }
-    }
     ?>
         <form method="post">
         Användarnamn: <input required type="text" name="Namn" placeholder="Skriv in ett användarnamn" value="<?php echo $Name; ?>"><span class="error"> <?php echo $NameErr; ?></span><br><br>

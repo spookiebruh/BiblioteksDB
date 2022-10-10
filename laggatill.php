@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "biblotek";
+$dbname = "bibliotek";
 
 // kopplar till databas
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -19,10 +19,10 @@ if (isset($_POST['Bok'])) {
     $ISBN = $_POST["ISBN"];
     $genre = $_POST["genre"];
     $sidor= $_POST["sidor"];
-    $pid = $_POST["pid"];
+    
     $ref = $_POST["ref"];
 
-    $sql = "INSERT INTO bok (Titel, Forfattare, ISBN, Genre, `Antal sidor`, PID, Referens) VALUES ('$Titel','$forf', $ISBN, '$genre', $sidor, $pid, $ref);"; 
+    $sql = "INSERT INTO bok (Titel, Forfattare, ISBN, Genre, `Antalsidor`, Referens) VALUES ('$Titel','$forf', $ISBN, '$genre', $sidor, $ref);"; 
 
     if ($conn->query($sql) === TRUE) {
       echo "New record created successfully";
@@ -57,7 +57,7 @@ if (isset($_POST['Film'])) {
   $genre = $_POST["genre"];
   $sidor= $_POST["sidor"];
   $pid = $_POST["pid"];
-/
+
   $sql = "INSERT INTO Bok (`Titel`, `Forfattare`, `ISBN`, `Genre`, `Antal sidor`, `PID`, `Referens`) VALUES ('$Titel','$forf', $ISBN, '$genre', $sidor, $pid, $ref)"; 
   echo $sql;
   if ($conn->query($sql)){   

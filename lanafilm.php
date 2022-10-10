@@ -46,22 +46,24 @@
      $compareFilm = $db->query ("SELECT filmID FROM lanelista WHERE lanelista.filmID = ".$_SESSION["FID"]."");
      
      
-      if ($compareFilm -> num_rows > 0){
-          header("location: anvandare.php");
-          }
-      else{
-          if (isset($_POST['Filmer'])) {
-            $FID = $_SESSION["FID"];
-            $sqlFilm = "INSERT INTO lanelista (filmID) VALUES ($FID)"; 
-              
-            echo ($sqlFilm);
-    
-              if ($conn->query($sqlFilm) == TRUE) {
-                echo "Du lånade ".$_SESSION["filmTitel"]."!";
-              } else {
-                echo "Error: " . $sqlFilm . "<br>" . $conn->error;
-              }
+     if ($compareFilm -> num_rows > 0){
+        header("location: anvandare.php");
         }
-    
-          }
+    else{
+        if (isset($_POST['Filmer'])) {
+          $FID = $_SESSION["FID"];
+          $dateFilm = date("Y-m-d");
+          $slutdateFilm = date('Y-m-d', strtotime("+1 months", strtotime($dateFilm)));;
+          
+          $sqlFilm = "INSERT INTO lanelista (filmID, startdatum, slutdatum) VALUES ($FID, '$dateFilm', '$slutdateFilm')"; 
+  
+            if ($conn->query($sqlFilm) == TRUE) {
+              echo "Du lånade ".$_SESSION["filmTitel"]."!";
+            } else {
+              echo "Error: " . $sqlFilm . "<br>" . $conn->error;
+            }
+      }
+  
+        }
+   
 ?>
