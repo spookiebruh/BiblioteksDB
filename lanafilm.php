@@ -1,8 +1,7 @@
 <?php
-     //Connect to DB
+  //Connect to DB
   require_once("conn.php");
-  //Starting session
-  session_start();
+
 
   // -------------------------------------------- //
   // --------------- Film ----------------------- //
@@ -51,14 +50,15 @@
         }
     else{
         if (isset($_POST['Filmer'])) {
-          $FID = $_SESSION["FID"];
+          $PID = $_SESSION['PID'];
+          $FID = $_POST["FID"];
           $dateFilm = date("Y-m-d");
           $slutdateFilm = date('Y-m-d', strtotime("+1 months", strtotime($dateFilm)));;
           
-          $sqlFilm = "INSERT INTO lanelista (filmID, startdatum, slutdatum) VALUES ($FID, '$dateFilm', '$slutdateFilm')"; 
+          $sqlFilm = "INSERT INTO lanelista (filmID, personID, startdatum, slutdatum) VALUES ($FID,$PID, '$dateFilm', '$slutdateFilm')"; 
   
             if ($conn->query($sqlFilm) == TRUE) {
-              echo "Du lånade ".$_SESSION["filmTitel"]."!";
+              echo "Du lånade ".$_POST["filmTitel"]."!";
             } else {
               echo "Error: " . $sqlFilm . "<br>" . $conn->error;
             }
