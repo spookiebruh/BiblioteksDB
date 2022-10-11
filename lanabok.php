@@ -54,19 +54,19 @@
 
      // Lägger till media i lånelistan
      $compareBok = $db->query ("SELECT bokID FROM lanelista WHERE lanelista.bokID = ".$_POST["BID"]);
-     //$personIDBok = $db->query ("SELECT PID FROM person WHERE person.Namn = ".$_SESSION[$anv]." AND person.Password = ".$_SESSION[$pass]);
+     //$personIDBok = $db->query ("SELECT PID FROM person WHERE person.Namn = ".$_SESSION['$anv']." AND person.Password = ".$_SESSION['$pass']);
      
       if ($compareBok -> num_rows > 0){
           header("location: anvandare.php");
           }
       else{
           if (isset($_POST['Bocker'])) {
-            //$PID = $_SESSION["PID"];
+            $PID = $_SESSION['PID'];
             $BID = $_POST["BID"];
             $dateBok = date("Y-m-d");
             $slutdateBok = date('Y-m-d', strtotime("+1 months", strtotime($dateBok)));;
             
-            $sqlBok = "INSERT INTO lanelista (bokID, startdatum, slutdatum) VALUES ($BID, '$dateBok', '$slutdateBok')"; 
+            $sqlBok = "INSERT INTO lanelista (bokID, personID, startdatum, slutdatum) VALUES ($BID, $PID, '$dateBok', '$slutdateBok')"; 
     
               if ($conn->query($sqlBok) == TRUE) {
                 echo "Du lånade ".$_POST["bokTitel"]."!";
