@@ -13,7 +13,6 @@
     <title>Inlogg</title>
 </head>
 <body>
-
     <?php
         $Name = "";
         $NameErr = false;
@@ -21,7 +20,6 @@
         $PasswordErr = false;
 
         if(isset($_POST['Namn']) && isset($_POST['Password'])){
-            
             
             $_SESSION['anv'] = $_POST['Namn'];
             $_SESSION['pass'] = $_POST['Password'];
@@ -66,14 +64,12 @@
     <div class="block2">
     <div class="rubrik">Bibliotek</div>
         <div class="block">
-            
-        
             <form method="post">
-            <input required type="text" name="Namn" placeholder="Skriv in ett användarnamn" value="<?php echo $Name; ?>"><span class="error"> <?php echo $NameErr; ?></span><br><br>
-            <input required type="password" name="Password" placeholder="Skriv in ett lösenord" value="<?php echo $Password; ?>"><span class="error"> <?php echo $PasswordErr; ?></span><br><br>
-            <input type="submit" value="Logga in">
-            <a href="">Glömt lösenord?</a>
-            <a href="">Skapa konto?</a>
+                <input required type="text" name="Namn" placeholder="Användarnamn" value="<?php echo $Name; ?>"><span class="error"> <?php echo $NameErr; ?></span><br>
+                <input required type="password" name="Password" placeholder="Lösenord" value="<?php echo $Password; ?>"><span class="error"> <?php echo $PasswordErr; ?></span><br><br>
+                <input type="submit" value="Logga in">
+                <a href="" onclick="alert('Quack 🐤')">Glömt lösenord?</a>
+                <a href="" onclick="alert('Quack 🐤')">Skapa konto?</a>
             </form>
         </div>
         </div>

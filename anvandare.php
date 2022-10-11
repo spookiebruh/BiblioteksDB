@@ -128,22 +128,11 @@
   <link rel="stylesheet" href="anvandare.css">
 </head>
 <body>
-<div class="block2">
+<div class="blockk">
  <!-- BOK -->  
- <div class="block">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8">
-          <div class="table-responsive">
+    <div class="box1">
+    
             <table class="table table-bordered">
-            <thead>
-              <tr>
-              <th>ID</th>
-              <th>Titel (Bok)</th>
-              <th>Författare</th>
-              <th>Genre</th>
-              <th>Antal sidor</th>
-            </thead>
           <tbody>
         <?php
             $fetchDataBok = fetch_data($db, $tableNameBok, $columnsBok);
@@ -151,158 +140,74 @@
             $sn=1;
             foreach($fetchDataBok as $data){
           ?>
-            <form method="post" action="lanabok.php">
-              <input type="hidden" name="Bocker">
-              <td><?php echo $_SESSION["BID"] = $data['BID']??''; ?></td>
-              <td><?php echo $_SESSION["bokTitel"] = $data['Titel']??''; ?></td>
-              <td><?php echo $_SESSION["bokForfattare"] = $data['Forfattare']??''; ?></td>
-              <td><?php echo $_SESSION["bokGenre"] = $data['Genre']??''; ?></td>
-              <td><?php echo $_SESSION["Antalsidor"] = $data['Antalsidor']??''; ?></td>
-              <td><input type="submit" value="Låna"></td>
-            </form>
+            <div class="box">
+              <form method="post" action="lanabok.php">
+                <input type="hidden" name="Bocker">
+                <td><?php echo $_SESSION["bokTitel"] = $data['Titel']??''; ?></td>
+                <td><?php echo $_SESSION["bokForfattare"] = $data['Forfattare']??''; ?></td>
+                <td><?php echo $_SESSION["bokGenre"] = $data['Genre']??''; ?></td>
+                <td><?php echo $_SESSION["Antalsidor"] = $data['Antalsidor']??''; ?></td>
+                <td><input type="submit" value="Låna"></td>
+              </form>
+            </div>
       
           <?php }}?>
           </tbody>
           </table>
-        </div>
       </div>
-      </div>
-    </div>
-  </div>
   <!-- LJUD -->      
-
-  <div class="block">         
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8">
-          <div class="table-responsive">
+    <div class="box2">
             <table class="table table-bordered">
-            <thead>
-              <tr>  
-              <th>ID</th>
-              <th>Titel (Ljudbok)</th>
-              <th>Författare</th>
-              <th>Genre</th>
-              <th>Längd (i sek.)</th>
-              <th>Röst</th>
-            </thead>
           <tbody>
         <?php
             if(is_array($fetchDataLjud)){      
             $sn=1;
             foreach($fetchDataLjud as $data){
           ?>
-            <form method="post" action="lanaljud.php">
-              <input type="hidden" name="Ljudbocker">
-              <td><?php echo $_SESSION["LID"] = $data['LID']??''; ?></td>
-              <td><?php echo $_SESSION["ljudTitel"] = $data['Titel']??''; ?></td>
-              <td><?php echo $_SESSION["ljudForfattare"] = $data['Forfattare']??''; ?></td>
-              <td><?php echo $_SESSION["ljudGenre"] = $data['Genre']??''; ?></td>
-              <td><?php echo $_SESSION["ljudLangd"] = $data['Langd']??''; ?></td>
-              <td><?php echo $_SESSION["Rost"] = $data['Rost']??''; ?></td>
-              <td><input type="submit" value="Låna"></td>
-            </form>
+            <div class="box">
+              <form method="post" action="lanaljud.php">
+                <input type="hidden" name="Ljudbocker">
+                <td><?php echo $_SESSION["ljudTitel"] = $data['Titel']??''; ?></td>
+                <td><?php echo $_SESSION["ljudForfattare"] = $data['Forfattare']??''; ?></td>
+                <td><?php echo $_SESSION["ljudGenre"] = $data['Genre']??''; ?></td>
+                <td><?php echo $_SESSION["ljudLangd"] = $data['Langd']??''; ?></td>
+                <td><?php echo $_SESSION["Rost"] = $data['Rost']??''; ?></td>
+                <td><input type="submit" value="Låna"></td>
+              </form>
+            </div>
 
           <?php }}?>
           </tbody>
           </table>
-        </div>
       </div>
-      </div>
-    </div>
-  </div>
   <!-- FILM -->  
-<div class="block">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8">
-          <div class="table-responsive">
+    <div class="box3">
             <table class="table table-bordered">
-            <thead>
-              <tr>
-              <th>ID</th>
-              <th>Titel (Film)</th>
-              <th>Regissör</th>
-              <th>Genre</th>
-              <th>Längd (i sek.)</th>
-            </thead>
           <tbody>
         <?php
             if(is_array($fetchDataFilm)){      
             $sn=1;
             foreach($fetchDataFilm as $data){
           ?>
-            <form method="post" action="lanafilm.php">
-              <input type="hidden" name="Filmer"> 
-              <td><?php echo $_SESSION["FID"] = $data['FID']??''; ?></td>
-              <td><?php echo $_SESSION["filmTitel"] = $data['Titel']??''; ?></td>
-              <td><?php echo $_SESSION["Regissor"] = $data['Regissor']??''; ?></td>
-              <td><?php echo $_SESSION["filmGenre"] = $data['Genre']??''; ?></td>
-              <td><?php echo $_SESSION["filmLangd"] = $data['Langd']??''; ?></td>
-              <td><input type="submit" value="Låna"></td>
-            </form>
-
+              <form method="post" action="lanafilm.php">
+                <input type="hidden" name="Filmer"> 
+                <td><?php echo $_SESSION["filmTitel"] = $data['Titel']??''; ?></td>
+                <td><?php echo $_SESSION["Regissor"] = $data['Regissor']??''; ?></td>
+                <td><?php echo $_SESSION["filmGenre"] = $data['Genre']??''; ?></td>
+                <td><?php echo $_SESSION["filmLangd"] = $data['Langd']??''; ?></td>
+                <td><input type="submit" value="Låna"></td>
+              </form>
           <?php }}?>
           </tbody>
           </table>
-        </div>
       </div>
-      </div>
-    </div>
-  </div>
  </div>
+</div>
 
-
-  <link rel="stylesheet" href="anvandare.css">
+<link rel="stylesheet" href="anvandare.css">
 </head>
 <body>
   <div class="rubrik"><h2>Bibliotek</h2></div>
-
- <!-- BOK -->  
-
-
-            
-            </tbody>
-            </table>
-          </div>
-        </div>
-        </div>
-      </div>
-    </div>            
-    <!-- FILM -->  
-      
-    <div class="block">
-    <div class="rubrik2"><h2>Film</h2></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8">
-            <div class="table-responsive">
-              <table class="table table-bordered">
-              <thead>
-                <tr>
-                <th>Titel</th>
-                <th>Regissör</th> 
-                <th>Genre</th>
-                <th>Längd</th>
-              </thead>
-            <tbody>
-          <?php
-              if(is_array($fetchDataFilm)){      
-              $sn=1;
-              foreach($fetchDataFilm as $data){
-
-                }
-              }
-            ?>
-              <tr>
-                <td><?php echo $data['Titel']??''; ?></td>
-                <td><?php echo $data['Regissor']??''; ?></td>
-                <td><?php echo $data['Genre']??''; ?></td>
-                <td><?php echo $data['Langd']??''; ?></td>
-                <td><input type="submit" value="Låna"></td>
-              </tr>
-
-
 
 </body>
 </html>
