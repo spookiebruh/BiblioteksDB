@@ -130,22 +130,12 @@
   <link rel="stylesheet" href="anvandare.css">
 </head>
 <body>
-<div class="block2">
+
 
  <!-- BOK -->  
- <div class="block">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8">
-          <div class="table-responsive">
+    <div class="box1">
+
             <table class="table table-bordered">
-            <thead>
-              <tr>
-              <th>Titel (Bok)</th>
-              <th>Författare</th>
-              <th>Genre</th>
-              <th>Antal sidor</th>
-            </thead>
           <tbody>
         <?php
             $fetchDataBok = fetch_data($db, $tableNameBok, $columnsBok);
@@ -153,6 +143,8 @@
             $sn=1;
             foreach($fetchDataBok as $data){
           ?>
+
+          <div class="box">
             <form method="post" action="lanabok.php">
               <input type="hidden" name="Bocker">
               <input type="hidden" name="BID" value="<?php echo $data['BID']; ?>">
@@ -169,37 +161,25 @@
               <input type="hidden" name="BID" value="<?php echo $data['BID']; ?>">
               <td><input type="submit" value="Lämna tillbaks" name="lamnatbxBok"></td>
             </form>
+           </div>
+
       
           <?php }}?>
           </tbody>
           </table>
-        </div>
       </div>
-      </div>
-    </div>
-  </div>
 
   <!-- LJUD -->      
-  <div class="block">         
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8">
-          <div class="table-responsive">
+    <div class="box2">
             <table class="table table-bordered">
-            <thead>
-              <tr>  
-              <th>Titel (Ljudbok)</th>
-              <th>Författare</th>
-              <th>Genre</th>
-              <th>Längd (i sek.)</th>
-              <th>Röst</th>
-            </thead>
           <tbody>
         <?php
             if(is_array($fetchDataLjud)){      
             $sn=1;
             foreach($fetchDataLjud as $data){
           ?>
+
+          <div class="box">
             <form method="post" action="lanaljud.php">
               <input type="hidden" name="Ljudbocker">
               <input type="hidden" name="LID" value="<?php echo $data['LID']; ?>">
@@ -217,29 +197,14 @@
               <input type="hidden" name="LID" value="<?php echo $data['LID']; ?>">
               <td><input type="submit" value="Lämna tillbaks" name="lamnatbxLjud"></td>
             </form>
-
+           </div>
           <?php }}?>
           </tbody>
           </table>
-        </div>
       </div>
-      </div>
-    </div>
-  </div>
   <!-- FILM -->  
-<div class="block">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8">
-          <div class="table-responsive">
+    <div class="box3">
             <table class="table table-bordered">
-            <thead>
-              <tr>
-              <th>Titel (Film)</th>
-              <th>Regissör</th>
-              <th>Genre</th>
-              <th>Längd (i sek.)</th>
-            </thead>
           <tbody>
         <?php
             if(is_array($fetchDataFilm)){      
@@ -262,19 +227,14 @@
               <input type="hidden" name="FID" value="<?php echo $data['FID']; ?>">
               <td><input type="submit" value="Lämna tillbaks" name="lamnatbxFilm"></td>
             </form>
-
           <?php }}?>
           </tbody>
           </table>
-        </div>
       </div>
-      </div>
-    </div>
-  </div>
  </div>
 
 
-  <link rel="stylesheet" href="anvandare.css">
+<link rel="stylesheet" href="anvandare.css">
 </head>
 <body>
   <div class="rubrik"><h2>Bibliotek</h2></div>

@@ -15,7 +15,7 @@ $dbname = "bibliotek";
       if (isset($_POST['Person'])) {
           $namn = $_POST["namn"];
           $passw = $_POST["passw"];
-          $admin= isset($_POST['admin']) ? 1 : 0; 
+          $admin= isset($_POST['admin']); 
 
           $sqlPerson = "INSERT INTO person (Namn, Password, Admin) VALUES ('$namn', '$passw',$admin)"; 
         

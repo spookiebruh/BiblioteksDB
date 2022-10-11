@@ -9,7 +9,7 @@
 .Ljud,
 .Film,
 [type = submit] { 
-    padding: 12px;
+    padding: 6px;
 }
 
 [type = submit],
@@ -17,15 +17,15 @@
     cursor: pointer;
 }
                     
-body{
+body {
     height: 100vh;
-    background-color: rgb(156, 173, 231);
+    background-color: rgb(231, 231, 231);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: stretch;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    align-content: flex-start;
+    align-content: center;
 }
 
 form{
@@ -45,32 +45,22 @@ form{
 }
 
 .box{
-    height: 350px;
-    margin: 10px;
-    background-color: rgb(53, 85, 145);
-    padding: 30px;
-    padding-bottom: 60px;
-    border-radius: 10px;
-    box-shadow: rgb(49, 64, 153) 5px 8px 8px;
-    color: white;
-    border-style: groove;
+    height:100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(206, 104, 79);
+
+
 }
 
-
-
-
-
 .print{
-    position: relative;
-    margin-right:100px;
+    justify-content: center;
+    margin-top: 70px;
+    margin-left: 30px;
     width: 500px;
-    margin: 10px;
-    background-color: rgb(53, 85, 145);
-    padding: 50px;
+    background-color: rgb(231, 231, 231);
     border-radius: 10px;
-    box-shadow: rgb(49, 64, 153) 5px 8px 8px;
-    color:white;
-    border-style: groove;
+
 }
 
 .print h2{
@@ -79,34 +69,14 @@ form{
 }
 
 .container{
-    position: absolute;
-    top: -133px;
-    right:0;
-    margin:10px;
-    margin-top: 8.5%;
-    align-items: flex-end;
-    flex-direction: column;
+    display: flex;
+    
 }
 
-.rubrik{
-    position: absolute;
-    top:0px;
-    left: 0;
-    right:0;
-    text-align: center;
-    font-size: 50px;
-    color: white;
-}
 
-.text2 {
-    position: absolute;
-    top: 15%;
-    left: 35.5%;
-    width: 600px;
-    font-size: 40px;
-    color: white;
-    font-weight: 700;
-}
+
+
+
 
 
 
