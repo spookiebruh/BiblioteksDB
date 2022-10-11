@@ -28,10 +28,12 @@
 
 
 
+
+
     // Gör om arrayen till en sträng som används i ett prepared statement  
     $columnNameBok = implode(", ", $columnsBok);
     
-    // Prepared statement
+  
     $sql = "SELECT ".$columnNameBok." FROM $tableNameBok"." ORDER BY titel";
     $result = $db->query($sql);
 
@@ -60,7 +62,7 @@
           header("location: anvandare.php");
           }
       else{
-          if (isset($_POST['Bocker'])) {
+          if (isset($_POST['lanaBok'])) {
             $PID = $_SESSION['PID'];
             $BID = $_POST["BID"];
             $dateBok = date("Y-m-d");
@@ -76,5 +78,4 @@
         }
     
           }
-     
-?>
+

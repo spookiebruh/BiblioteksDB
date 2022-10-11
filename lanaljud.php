@@ -43,14 +43,14 @@
      return $msgLjud;
      }
 
-     $compareLjud = $db->query ("SELECT ljudID FROM lanelista WHERE lanelista.ljudID = ".$_SESSION["LID"]."");
+     $compareLjud = $db->query ("SELECT ljudID FROM lanelista WHERE lanelista.ljudID = ".$_POST["LID"]."");
      
      
     if ($compareLjud -> num_rows > 0){
         header("location: anvandare.php");
         }
     else{
-        if (isset($_POST['Ljudbocker'])) {
+        if (isset($_POST['lanaLjudBok'])) {
           $PID = $_SESSION['PID'];
           $LID = $_POST["LID"];
           $dateLjud = date("Y-m-d");

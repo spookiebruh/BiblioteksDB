@@ -49,7 +49,7 @@
         header("location: anvandare.php");
         }
     else{
-        if (isset($_POST['Filmer'])) {
+        if (isset($_POST['lanaFilm'])) {
           $PID = $_SESSION['PID'];
           $FID = $_POST["FID"];
           $dateFilm = date("Y-m-d");
