@@ -1,6 +1,8 @@
 <?php
-  session_start();
+ 
   require_once("conn.php");
+
+
   
   // -------------------------------------------- //
   // --------------- Bok ------------------------ //
@@ -128,10 +130,11 @@
   <link rel="stylesheet" href="anvandare.css">
 </head>
 <body>
-<div class="blockk">
+
+
  <!-- BOK -->  
     <div class="box1">
-    
+
             <table class="table table-bordered">
           <tbody>
         <?php
@@ -140,21 +143,32 @@
             $sn=1;
             foreach($fetchDataBok as $data){
           ?>
-            <div class="box">
-              <form method="post" action="lanabok.php">
-                <input type="hidden" name="Bocker">
-                <td><?php echo $_SESSION["bokTitel"] = $data['Titel']??''; ?></td>
-                <td><?php echo $_SESSION["bokForfattare"] = $data['Forfattare']??''; ?></td>
-                <td><?php echo $_SESSION["bokGenre"] = $data['Genre']??''; ?></td>
-                <td><?php echo $_SESSION["Antalsidor"] = $data['Antalsidor']??''; ?></td>
-                <td><input type="submit" value="Låna"></td>
-              </form>
-            </div>
+
+          <div class="box">
+            <form method="post" action="lanabok.php">
+              <input type="hidden" name="Bocker">
+              <input type="hidden" name="BID" value="<?php echo $data['BID']; ?>">
+              <input type="hidden" name="PID" value="<?php echo $_SESSION['PID']; ?>">
+              <input type="hidden" name="bokTitel" value="<?php echo $data['Titel']; ?>">
+              <td><?php echo $data['Titel']??''; ?></td>
+              <td><?php echo $_SESSION["bokForfattare"] = $data['Forfattare']??''; ?></td>
+              <td><?php echo $_SESSION["bokGenre"] = $data['Genre']??''; ?></td>
+              <td><?php echo $_SESSION["Antalsidor"] = $data['Antalsidor']??''; ?></td>
+              <td><input type="submit" value="Låna" name="lanaBok"></td>
+            </form>
+            <form method="post" action="lamnatbxbok.php">
+              <input type="hidden" name="bokTitel" value="<?php echo $data['Titel']; ?>">
+              <input type="hidden" name="BID" value="<?php echo $data['BID']; ?>">
+              <td><input type="submit" value="Lämna tillbaks" name="lamnatbxBok"></td>
+            </form>
+           </div>
+
       
           <?php }}?>
           </tbody>
           </table>
       </div>
+
   <!-- LJUD -->      
     <div class="box2">
             <table class="table table-bordered">
@@ -164,18 +178,26 @@
             $sn=1;
             foreach($fetchDataLjud as $data){
           ?>
-            <div class="box">
-              <form method="post" action="lanaljud.php">
-                <input type="hidden" name="Ljudbocker">
-                <td><?php echo $_SESSION["ljudTitel"] = $data['Titel']??''; ?></td>
-                <td><?php echo $_SESSION["ljudForfattare"] = $data['Forfattare']??''; ?></td>
-                <td><?php echo $_SESSION["ljudGenre"] = $data['Genre']??''; ?></td>
-                <td><?php echo $_SESSION["ljudLangd"] = $data['Langd']??''; ?></td>
-                <td><?php echo $_SESSION["Rost"] = $data['Rost']??''; ?></td>
-                <td><input type="submit" value="Låna"></td>
-              </form>
-            </div>
 
+          <div class="box">
+            <form method="post" action="lanaljud.php">
+              <input type="hidden" name="Ljudbocker">
+              <input type="hidden" name="LID" value="<?php echo $data['LID']; ?>">
+              <input type="hidden" name="PID" value="<?php echo $_SESSION['PID']; ?>">
+              <input type="hidden" name="ljudTitel" value="<?php echo $data['Titel']; ?>">
+              <td><?php echo $data['Titel']??''; ?></td>
+              <td><?php echo $_SESSION["ljudForfattare"] = $data['Forfattare']??''; ?></td>
+              <td><?php echo $_SESSION["ljudGenre"] = $data['Genre']??''; ?></td>
+              <td><?php echo $_SESSION["ljudLangd"] = $data['Langd']??''; ?></td>
+              <td><?php echo $_SESSION["Rost"] = $data['Rost']??''; ?></td>
+              <td><input type="submit" value="Låna" name="lanaLjudBok"></td>
+            </form>
+            <form method="post" action="lamnatbxljud.php">
+              <input type="hidden" name="ljudTitel" value="<?php echo $data['Titel']; ?>">
+              <input type="hidden" name="LID" value="<?php echo $data['LID']; ?>">
+              <td><input type="submit" value="Lämna tillbaks" name="lamnatbxLjud"></td>
+            </form>
+           </div>
           <?php }}?>
           </tbody>
           </table>
@@ -189,20 +211,28 @@
             $sn=1;
             foreach($fetchDataFilm as $data){
           ?>
-              <form method="post" action="lanafilm.php">
-                <input type="hidden" name="Filmer"> 
-                <td><?php echo $_SESSION["filmTitel"] = $data['Titel']??''; ?></td>
-                <td><?php echo $_SESSION["Regissor"] = $data['Regissor']??''; ?></td>
-                <td><?php echo $_SESSION["filmGenre"] = $data['Genre']??''; ?></td>
-                <td><?php echo $_SESSION["filmLangd"] = $data['Langd']??''; ?></td>
-                <td><input type="submit" value="Låna"></td>
-              </form>
+            <form method="post" action="lanafilm.php">
+              <input type="hidden" name="Filmer"> 
+              <input type="hidden" name="FID" value="<?php echo $data['FID']; ?>">
+              <input type="hidden" name="PID" value="<?php echo $_SESSION['PID']; ?>">
+              <input type="hidden" name="filmTitel" value="<?php echo $data['Titel']; ?>">
+              <td><?php echo $data['Titel']??''; ?></td>
+              <td><?php echo $_SESSION["Regissor"] = $data['Regissor']??''; ?></td>
+              <td><?php echo $_SESSION["filmGenre"] = $data['Genre']??''; ?></td>
+              <td><?php echo $_SESSION["filmLangd"] = $data['Langd']??''; ?></td>
+              <td><input type="submit" value="Låna" name="lanaFilm"></td>
+            </form>
+            <form method="post" action="lamnatbxfilm.php">
+              <input type="hidden" name="filmTitel" value="<?php echo $data['Titel']; ?>">
+              <input type="hidden" name="FID" value="<?php echo $data['FID']; ?>">
+              <td><input type="submit" value="Lämna tillbaks" name="lamnatbxFilm"></td>
+            </form>
           <?php }}?>
           </tbody>
           </table>
       </div>
  </div>
-</div>
+
 
 <link rel="stylesheet" href="anvandare.css">
 </head>

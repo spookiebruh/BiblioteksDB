@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    
     require_once('conn.php');
 ?>
 
@@ -25,7 +25,8 @@
             $_SESSION['pass'] = $_POST['Password'];
 
             $anv = $_SESSION['anv'];
-            $pass = $_SESSION['pass'];
+            $pass = $_SESSION['pass'];  
+            $pid = $_SESSION['PID'];
             
             $sql = "SELECT * FROM person WHERE Namn='$anv' and Password='$pass'";
             $result = $conn->query($sql);
@@ -36,7 +37,7 @@
             $NameErr = $PasswordErr = "";
             
             if ($result->num_rows!=1) {
-                header("location: inlogg.php");
+                header("location: index.php");
             }
             else{
                 
@@ -47,10 +48,12 @@
                 $result = $stmt->get_result();
                 $row = $result->fetch_assoc();
                 $id = $row['Admin'];
-                
-                $_POST['id'] = $id;
-                print_r($id);
-                if (intval($id) == 1){
+                $pid = $row['PID'];
+                $_SESSION['PID']=$pid;
+             
+               
+                print_r($pid);
+                if (intval($pid) == 1){
                     header("location: admin.php");
                 }
                 else{
@@ -60,6 +63,7 @@
             }
         }
     ?>
+
    
     <div class="block2">
     <div class="rubrik">Bibliotek</div>
@@ -73,5 +77,6 @@
             </form>
         </div>
         </div>
+
 </body>
 </html>

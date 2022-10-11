@@ -1,6 +1,5 @@
 <?php
-  //Starting session
-  session_start();
+
 
   //Connect to DB
   require_once("conn.php");
@@ -27,52 +26,56 @@
       $msg= "Table Name is empty";
     }else{
 
+
+
+
+
+    // Gör om arrayen till en sträng som används i ett prepared statement  
     $columnNameBok = implode(", ", $columnsBok);
     
-
+  
     $sql = "SELECT ".$columnNameBok." FROM $tableNameBok"." ORDER BY titel";
     $result = $db->query($sql);
 
     // Fetchar data om det finns
     if($result == true){ 
       if ($result->num_rows > 0) {
-         $row= mysqli_fetch_all($result, MYSQLI_ASSOC);
-         $msg= $row;
+         $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+         $msg = $row;
       } else {
-         $msg= "No Data Found"; 
+         $msg = "No Data Found"; 
       }
      }else{
-       $msg= mysqli_error($db);
+       $msg = mysqli_error($db);
      }
      }
      return $msg;
      }
 
+
+
      // Lägger till media i lånelistan
-    
-  
-     $compareBok = $db->query ("SELECT bokID FROM lanelista WHERE lanelista.bokID = ".$_SESSION["BID"]);
-     //$personIDBok = $db->query ("SELECT PID FROM person WHERE person.Namn = ".$_SESSION[$anv]." AND person.Password = ".$_SESSION[$pass]);
+     $compareBok = $db->query ("SELECT bokID FROM lanelista WHERE lanelista.bokID = ".$_POST["BID"]);
+     //$personIDBok = $db->query ("SELECT PID FROM person WHERE person.Namn = ".$_SESSION['$anv']." AND person.Password = ".$_SESSION['$pass']);
      
       if ($compareBok -> num_rows > 0){
           header("location: anvandare.php");
           }
       else{
-          if (isset($_POST['Bocker'])) {
-            //$PID = $_SESSION["PID"];
-            $BID = $_SESSION["BID"];
+          if (isset($_POST['lanaBok'])) {
+            $PID = $_SESSION['PID'];
+            $BID = $_POST["BID"];
             $dateBok = date("Y-m-d");
             $slutdateBok = date('Y-m-d', strtotime("+1 months", strtotime($dateBok)));;
             
-            $sqlBok = "INSERT INTO lanelista (bokID, startdatum, slutdatum) VALUES ($BID, '$dateBok', '$slutdateBok')"; 
+            $sqlBok = "INSERT INTO lanelista (bokID, personID, startdatum, slutdatum) VALUES ($BID, $PID, '$dateBok', '$slutdateBok')"; 
     
               if ($conn->query($sqlBok) == TRUE) {
-                echo "Du lånade ".$_SESSION["bokTitel"]."!";
+                echo "Du lånade ".$_POST["bokTitel"]."!";
               } else {
                 echo "Error: " . $sqlBok . "<br>" . $conn->error;
               }
         }
     
           }
-     
-?>
+
