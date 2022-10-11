@@ -1,6 +1,8 @@
 <?php
-  session_start();
+ 
   require_once("conn.php");
+
+
   
   // -------------------------------------------- //
   // --------------- Bok ------------------------ //
@@ -129,6 +131,7 @@
 </head>
 <body>
 <div class="block2">
+
  <!-- BOK -->  
  <div class="block">
     <div class="container">
@@ -138,7 +141,6 @@
             <table class="table table-bordered">
             <thead>
               <tr>
-              <th>ID</th>
               <th>Titel (Bok)</th>
               <th>Författare</th>
               <th>Genre</th>
@@ -153,12 +155,19 @@
           ?>
             <form method="post" action="lanabok.php">
               <input type="hidden" name="Bocker">
-              <td><?php echo $_SESSION["BID"] = $data['BID']??''; ?></td>
-              <td><?php echo $_SESSION["bokTitel"] = $data['Titel']??''; ?></td>
+              <input type="hidden" name="BID" value="<?php echo $data['BID']; ?>">
+              <input type="hidden" name="PID" value="<?php echo $_SESSION['PID']; ?>">
+              <input type="hidden" name="bokTitel" value="<?php echo $data['Titel']; ?>">
+              <td><?php echo $data['Titel']??''; ?></td>
               <td><?php echo $_SESSION["bokForfattare"] = $data['Forfattare']??''; ?></td>
               <td><?php echo $_SESSION["bokGenre"] = $data['Genre']??''; ?></td>
               <td><?php echo $_SESSION["Antalsidor"] = $data['Antalsidor']??''; ?></td>
-              <td><input type="submit" value="Låna"></td>
+              <td><input type="submit" value="Låna" name="lanaBok"></td>
+            </form>
+            <form method="post" action="lamnatbxbok.php">
+              <input type="hidden" name="bokTitel" value="<?php echo $data['Titel']; ?>">
+              <input type="hidden" name="BID" value="<?php echo $data['BID']; ?>">
+              <td><input type="submit" value="Lämna tillbaks" name="lamnatbxBok"></td>
             </form>
       
           <?php }}?>
@@ -169,8 +178,8 @@
       </div>
     </div>
   </div>
-  <!-- LJUD -->      
 
+  <!-- LJUD -->      
   <div class="block">         
     <div class="container">
       <div class="row">
@@ -179,7 +188,6 @@
             <table class="table table-bordered">
             <thead>
               <tr>  
-              <th>ID</th>
               <th>Titel (Ljudbok)</th>
               <th>Författare</th>
               <th>Genre</th>
@@ -194,13 +202,20 @@
           ?>
             <form method="post" action="lanaljud.php">
               <input type="hidden" name="Ljudbocker">
-              <td><?php echo $_SESSION["LID"] = $data['LID']??''; ?></td>
-              <td><?php echo $_SESSION["ljudTitel"] = $data['Titel']??''; ?></td>
+              <input type="hidden" name="LID" value="<?php echo $data['LID']; ?>">
+              <input type="hidden" name="PID" value="<?php echo $_SESSION['PID']; ?>">
+              <input type="hidden" name="ljudTitel" value="<?php echo $data['Titel']; ?>">
+              <td><?php echo $data['Titel']??''; ?></td>
               <td><?php echo $_SESSION["ljudForfattare"] = $data['Forfattare']??''; ?></td>
               <td><?php echo $_SESSION["ljudGenre"] = $data['Genre']??''; ?></td>
               <td><?php echo $_SESSION["ljudLangd"] = $data['Langd']??''; ?></td>
               <td><?php echo $_SESSION["Rost"] = $data['Rost']??''; ?></td>
-              <td><input type="submit" value="Låna"></td>
+              <td><input type="submit" value="Låna" name="lanaLjudBok"></td>
+            </form>
+            <form method="post" action="lamnatbxljud.php">
+              <input type="hidden" name="ljudTitel" value="<?php echo $data['Titel']; ?>">
+              <input type="hidden" name="LID" value="<?php echo $data['LID']; ?>">
+              <td><input type="submit" value="Lämna tillbaks" name="lamnatbxLjud"></td>
             </form>
 
           <?php }}?>
@@ -220,7 +235,6 @@
             <table class="table table-bordered">
             <thead>
               <tr>
-              <th>ID</th>
               <th>Titel (Film)</th>
               <th>Regissör</th>
               <th>Genre</th>
@@ -234,12 +248,19 @@
           ?>
             <form method="post" action="lanafilm.php">
               <input type="hidden" name="Filmer"> 
-              <td><?php echo $_SESSION["FID"] = $data['FID']??''; ?></td>
-              <td><?php echo $_SESSION["filmTitel"] = $data['Titel']??''; ?></td>
+              <input type="hidden" name="FID" value="<?php echo $data['FID']; ?>">
+              <input type="hidden" name="PID" value="<?php echo $_SESSION['PID']; ?>">
+              <input type="hidden" name="filmTitel" value="<?php echo $data['Titel']; ?>">
+              <td><?php echo $data['Titel']??''; ?></td>
               <td><?php echo $_SESSION["Regissor"] = $data['Regissor']??''; ?></td>
               <td><?php echo $_SESSION["filmGenre"] = $data['Genre']??''; ?></td>
               <td><?php echo $_SESSION["filmLangd"] = $data['Langd']??''; ?></td>
-              <td><input type="submit" value="Låna"></td>
+              <td><input type="submit" value="Låna" name="lanaFilm"></td>
+            </form>
+            <form method="post" action="lamnatbxfilm.php">
+              <input type="hidden" name="filmTitel" value="<?php echo $data['Titel']; ?>">
+              <input type="hidden" name="FID" value="<?php echo $data['FID']; ?>">
+              <td><input type="submit" value="Lämna tillbaks" name="lamnatbxFilm"></td>
             </form>
 
           <?php }}?>
@@ -257,49 +278,6 @@
 </head>
 <body>
   <div class="rubrik"><h2>Bibliotek</h2></div>
-
- <!-- BOK -->  
-
-
-            
-            </tbody>
-            </table>
-          </div>
-        </div>
-        </div>
-      </div>
-    </div>            
-    <!-- FILM -->  
-      
-    <div class="block">
-    <div class="rubrik2"><h2>Film</h2></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8">
-            <div class="table-responsive">
-              <table class="table table-bordered">
-              <thead>
-                <tr>
-                <th>Titel</th>
-                <th>Regissör</th> 
-                <th>Genre</th>
-                <th>Längd</th>
-              </thead>
-            <tbody>
-          <?php
-              if(is_array($fetchDataFilm)){      
-              $sn=1;
-              foreach($fetchDataFilm as $data){
-            ?>
-              <tr>
-                <td><?php echo $data['Titel']??''; ?></td>
-                <td><?php echo $data['Regissor']??''; ?></td>
-                <td><?php echo $data['Genre']??''; ?></td>
-                <td><?php echo $data['Langd']??''; ?></td>
-                <td><input type="submit" value="Låna"></td>
-              </tr>
-
-
 
 </body>
 </html>
