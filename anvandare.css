@@ -3,11 +3,18 @@
     padding:0;
 }
 
+.box1,
+.box2,
+.box3{
+    display: flex;
+    flex-flow: column;
+}
 
-.blockk{
-    display: grid;
+.block{
+    display: flex;
     grid-template-columns: 50px 50px 50px 50px 50px;
     grid-template-rows: auto;
+    grid-gap: 10px;;
     
 }
 
@@ -31,8 +38,7 @@
 .table-bordered {
     height:300px;
     width: 400px;
-    padding: 50px;
+    padding: 10px;
     background-color: rgb(224, 214, 210);
 }
 
-.blockk {
