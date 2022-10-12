@@ -116,7 +116,54 @@
      return $msgFilm;
      }
 ?>
+<?php
+  $output = '';
+  $input = '';
+  if(isset($_POST['search'])){
+    $searchq = $_POST['search'];
+    $searchq = preg_replace("#[^0-9a-z]#i","",$searchq);
 
+    $sqlfragaBok = ("SELECT * FROM bok WHERE Titel LIKE '{$searchq}%'");
+    $sqlfragaFilm = ("SELECT * FROM film WHERE Titel LIKE '{$searchq}%'");
+    $sqlfragaLjud = ("SELECT * FROM ljud WHERE Titel LIKE '{$searchq}%'");
+    $sqlsrchBok = $db->query($sqlfragaBok) or die("Could not search!");
+    $sqlsrchFilm = $db->query($sqlfragaFilm) or die("Could not search!");
+    $sqlsrchLjud = $db->query($sqlfragaLjud) or die("Could not search!");
+    $countBok = mysqli_num_rows($sqlsrchBok);
+    $countFilm = mysqli_num_rows($sqlsrchFilm);
+    $countLjud = mysqli_num_rows($sqlsrchLjud);
+    /*print_r($sqlfragaBok);
+    echo "<br>";
+    print_r($sqlfragaFilm);
+    echo "<br>"; 
+    print_r($sqlfragaLjud);
+    echo "<br>";*/
+    if($countBok != 0){
+      while($srow = mysqli_fetch_array($sqlsrchBok)){
+        $Titel = $srow['Titel'];
+
+        $output .= '<div>'.$Titel.'</div>';
+      }
+    }
+    if($countFilm != 0){
+      while($srow = mysqli_fetch_array($sqlsrchFilm)){
+        $Titel = $srow['Titel'];
+
+        $output .= '<div>'.$Titel.'</div>';
+      }
+    }
+    if($countLjud != 0){
+      while($srow = mysqli_fetch_array($sqlsrchLjud)){
+        $Titel = $srow['Titel'];
+
+        $output .= '<div>'.$Titel.'</div>';
+      }
+    }
+    if(strlen($output) == 0){
+      $output = 'There was no search result!';
+    }
+  }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -131,6 +178,12 @@
 </head>
 <body>
 
+<form action="anvandare.php" method="post">
+  <input type="text" name="search" placeholder="Search...">
+  <input type="submit" value=">>" />
+</form>
+
+<?php print ("$output");?>
 
  <!-- BOK -->  
     <div class="box1">
