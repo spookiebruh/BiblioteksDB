@@ -1,31 +1,24 @@
 <link rel="stylesheet" href="laggatill.css">
 <?php
 
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "bibliotek";
-
   require "conn.php";
-
 
     echo"<div class='text'>";
       echo"<p>";
-      if (isset($_POST['Person'])) {
-          $namn = $_POST["namn"];
-          $passw = $_POST["passw"];
-          $admin= isset($_POST['admin']); 
+        if (isset($_POST['Person'])) {
+            $namn = $_POST["namn"];
+            $passw = $_POST["passw"];
+            $admin= isset($_POST['admin']); 
 
-          $sqlPerson = "INSERT INTO person (Namn, Password, Admin) VALUES ('$namn', '$passw',$admin)"; 
-        
-          if ($conn->query($sqlPerson) == TRUE) {
-            echo "Du har lagt till en ";
-          } else {
-            echo "DU DE BLEV FEL!" . $sqlPerson . "<br>" . $conn->error;
-          }
+            $sqlPerson = "INSERT INTO person (Namn, Password, Admin) VALUES ('$namn', '$passw',$admin)"; 
+          
+            if ($conn->query($sqlPerson) == TRUE) {
+              echo "Du har lagt till en ";
+            } else {
+              echo "DU DE BLEV FEL!" . $sqlPerson . "<br>" . $conn->error;
+            }
       echo"</p>";
-    echo"</div>";
+  echo"</div>";
   echo"<div class='usertext'>";
     if($admin == 1) {
       echo"Admin"; 
@@ -51,14 +44,8 @@ if (isset($_POST['Bok'])) {
     $ISBN = $_POST["ISBN"];
     $genre = $_POST["genre"];
     $sidor= $_POST["sidor"];
-
-    
-    $ref = $_POST["ref"];
-
-    $sql = "INSERT INTO bok (Titel, Forfattare, ISBN, Genre, `Antalsidor`, Referens) VALUES ('$Titel','$forf', $ISBN, '$genre', $sidor, $ref);"; 
-
     $typ = $_POST["typ"];
-    $ref = isset($_POST['ref']) ? 1 : 0; 
+    $ref = isset($_POST['ref']); 
 
     $sqlBok = "INSERT INTO bok (Titel, Forfattare, ISBN, Genre, Antalsidor, Typ, Referens) VALUES ('$Titel','$forf', $ISBN, '$genre', $sidor, '$typ', '$ref')"; 
 
@@ -68,6 +55,13 @@ if (isset($_POST['Bok'])) {
     } else {
       echo "Det blev något fel i: " . $sqlBok . "<br>" . $conn->error;
     }
+    ?>  
+      <script>
+      setTimeout(() => {
+        location.replace("admin.php")
+      }, "1500")
+      </script>
+    <?php
 }
 
 if (isset($_POST['ljud'])) {
@@ -102,26 +96,11 @@ if (isset($_POST['Film'])) {
     }
 }
 
+
 ?>
 
 
 
 
 
-if (isset($_POST['Film'])) {
-  $Titel = $_POST["Titel"];
-  $forf = $_POST["Regi"];
-  $ISBN = $_POST["ISBN"];
-  $genre = $_POST["genre"];
-  $sidor= $_POST["sidor"];
-  $pid = $_POST["pid"];
-
-  $sql = "INSERT INTO Bok (`Titel`, `Forfattare`, `ISBN`, `Genre`, `Antal sidor`, `PID`, `Referens`) VALUES ('$Titel','$forf', $ISBN, '$genre', $sidor, $pid, $ref)"; 
-  echo $sql;
-  if ($conn->query($sql)){   
- 
-}
-}
-$conn->close();
-?>
 

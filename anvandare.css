@@ -3,25 +3,36 @@
     padding:0;
 }
 
-.box1,
-.box2,
-.box3 {
-    display: block;
-    width:auto;
-    background-color: red;
+
+.blockk{
+    display: grid;
+    grid-template-columns: 50px 50px 50px 50px 50px;
+    grid-template-rows: auto;
+    
 }
 
-.box1{
+.bild{
     background-image: url('iconmonstr-book-25.svg');
     background-repeat: no-repeat;
 }
 
-.box2{
+.bild2{
     background-image: url('iconmonstr-sound-wave-1.svg');
+    background-color: rgb(224, 214, 210);
     background-repeat: no-repeat;
 }
 
-.box3{
+.bild3{
     background-image: url('iconmonstr-video-9.svg');
+    background-color: rgb(224, 214, 210);
     background-repeat: no-repeat;
+} 
+
+.table-bordered {
+    height:300px;
+    width: 400px;
+    padding: 50px;
+    background-color: rgb(224, 214, 210);
 }
+
+.blockk {
