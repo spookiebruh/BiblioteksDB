@@ -72,8 +72,8 @@
                 <input required type="text" name="Namn" placeholder="Användarnamn" value="<?php echo $Name; ?>"><span class="error"> <?php echo $NameErr; ?></span><br>
                 <input required type="password" name="Password" placeholder="Lösenord" value="<?php echo $Password; ?>"><span class="error"> <?php echo $PasswordErr; ?></span><br><br>
                 <input type="submit" value="Logga in">
-                <a href="" onclick="alert('Quack 🐤')">Glömt lösenord?</a>
-                <a href="" onclick="alert('Quack 🐤')">Skapa konto?</a>
+                <a href="" onclick="alert('Något gick fel!')">Glömt lösenord?</a>
+                <a href="" onclick="alert('Något gick fel!')">Skapa konto?</a>
             </form>
         </div>
         </div>

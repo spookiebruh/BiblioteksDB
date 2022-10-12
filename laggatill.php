@@ -10,7 +10,7 @@
             $passw = $_POST["passw"];
             $admin= isset($_POST['admin']); 
 
-            $sqlPerson = "INSERT INTO person (Namn, Password, Admin) VALUES ('$namn', '$passw',$admin)"; 
+            $sqlPerson = "INSERT INTO person (Namn, Password, Admin) VALUES ('$namn', '$passw','$admin')"; 
           
             if ($conn->query($sqlPerson) == TRUE) {
               echo "Du har lagt till en ";
@@ -74,7 +74,7 @@ if (isset($_POST['ljud'])) {
     $sqlLjud = "INSERT INTO ljud (Titel, Forfattare, Langd, Genre, Rost) VALUES ('$Titel','$forf', '$langd', '$genre', '$rost')"; 
     
     if ($conn->query($sqlLjud) == TRUE) {
-      echo "Du har lagt till en Ljudbok";
+      echo "Du har lagt till en ljudbok";
     } else {
       echo "Det blev något fel i: " . $sqlLjud . "<br>" . $conn->error;
     }
@@ -90,7 +90,7 @@ if (isset($_POST['Film'])) {
     $sqlFilm = "INSERT INTO Film (Titel, Regissor, Langd, Genre) VALUES ('$Titel', '$Regi', '$Langd', '$Genre')"; 
   
     if ($conn->query($sqlFilm) == TRUE) {
-      echo "Du har lagt till en Ljudbok";
+      echo "Du har lagt till en film";
     } else {
       echo "Det blev något fel i: " . $sqlFilm . "<br>" . $conn->error;
     }

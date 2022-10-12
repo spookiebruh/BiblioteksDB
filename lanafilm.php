@@ -42,7 +42,7 @@
      return $msgFilm;
      }
 
-     $compareFilm = $db->query ("SELECT filmID FROM lanelista WHERE lanelista.filmID = ".$_SESSION["FID"]."");
+     $compareFilm = $db->query ("SELECT filmID FROM lanelista WHERE lanelista.filmID = ".$_POST["FID"]);
      
      
      if ($compareFilm -> num_rows > 0){
