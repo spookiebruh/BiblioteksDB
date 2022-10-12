@@ -1,8 +1,7 @@
 <?php
   //Connect to DB
   require_once("conn.php");
-  //Starting session
-  session_start();
+
 
 
   // -------------------------------------------- //
@@ -44,22 +43,23 @@
      return $msgLjud;
      }
 
-     $compareLjud = $db->query ("SELECT ljudID FROM lanelista WHERE lanelista.ljudID = ".$_SESSION["LID"]."");
+     $compareLjud = $db->query ("SELECT ljudID FROM lanelista WHERE lanelista.ljudID = ".$_POST["LID"]."");
      
      
     if ($compareLjud -> num_rows > 0){
         header("location: anvandare.php");
         }
     else{
-        if (isset($_POST['Ljudbocker'])) {
-          $LID = $_SESSION["LID"];
+        if (isset($_POST['lanaLjudBok'])) {
+          $PID = $_SESSION['PID'];
+          $LID = $_POST["LID"];
           $dateLjud = date("Y-m-d");
           $slutdateLjud = date('Y-m-d', strtotime("+1 months", strtotime($dateLjud)));;
           
-          $sqlLjud = "INSERT INTO lanelista (ljudID, startdatum, slutdatum) VALUES ($LID, '$dateLjud', '$slutdateLjud')"; 
+          $sqlLjud = "INSERT INTO lanelista (ljudID, personID, startdatum, slutdatum) VALUES ($LID,$PID, '$dateLjud', '$slutdateLjud')"; 
   
             if ($conn->query($sqlLjud) == TRUE) {
-              echo "Du lånade ".$_SESSION["ljudTitel"]."!";
+              echo "Du lånade ".$_POST["ljudTitel"]."!";
             } else {
               echo "Error: " . $sqlLjud . "<br>" . $conn->error;
             }
