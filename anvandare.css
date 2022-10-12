@@ -5,23 +5,40 @@
 
 .box1,
 .box2,
-.box3 {
-    display: block;
-    width:auto;
-    background-color: red;
+.box3{
+    display: flex;
+    flex-flow: column;
 }
 
-.box1{
+.block{
+    display: flex;
+    grid-template-columns: 50px 50px 50px 50px 50px;
+    grid-template-rows: auto;
+    grid-gap: 10px;;
+    
+}
+
+.bild{
     background-image: url('iconmonstr-book-25.svg');
     background-repeat: no-repeat;
 }
 
-.box2{
+.bild2{
     background-image: url('iconmonstr-sound-wave-1.svg');
+    background-color: rgb(224, 214, 210);
     background-repeat: no-repeat;
 }
 
-.box3{
+.bild3{
     background-image: url('iconmonstr-video-9.svg');
+    background-color: rgb(224, 214, 210);
     background-repeat: no-repeat;
+} 
+
+.table-bordered {
+    height:300px;
+    width: 400px;
+    padding: 10px;
+    background-color: rgb(224, 214, 210);
 }
+

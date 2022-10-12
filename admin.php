@@ -35,7 +35,7 @@
                 <input type="text" class="bok" name="genre"  placeholder="Genre" required>
                 <input type="number" class="bok" name="sidor"  placeholder="Antal sidor" required>
                 <input type="text" class="bok" name="typ"  placeholder="Typ" required>
-                <label class="check"><input type="checkbox" id="class" name="ref" Min="0" Max="1" placeholder="Referens" required><p>Referens?</p></label>
+                <label class="check"><input type="checkbox" class="bok" name="ref" Min="0" Max="1" placeholder="Referens" ><p>Referens?</p></label>
                 <input type="submit">
             </form>
         

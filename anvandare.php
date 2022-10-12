@@ -172,7 +172,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Användare</title>
-
+  <div class="rubrik"><h2>Bibliotek</h2></div>
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
   <link rel="stylesheet" href="anvandare.css">
 </head>
@@ -186,6 +186,7 @@
 <?php print ("$output");?>
 
  <!-- BOK -->  
+  <div class="block">
     <div class="box1">
 
             <table class="table table-bordered">
@@ -220,19 +221,17 @@
           <?php }}?>
           </tbody>
           </table>
-      </div>
+    </div>
 
   <!-- LJUD -->      
     <div class="box2">
-            <table class="table table-bordered">
+            <table class="table table-bordered bild2">
           <tbody>
         <?php
             if(is_array($fetchDataLjud)){      
             $sn=1;
             foreach($fetchDataLjud as $data){
           ?>
-
-          <div class="box">
             <form method="post" action="lanaljud.php">
               <input type="hidden" name="Ljudbocker">
               <input type="hidden" name="LID" value="<?php echo $data['LID']; ?>">
@@ -250,14 +249,14 @@
               <input type="hidden" name="LID" value="<?php echo $data['LID']; ?>">
               <td><input type="submit" value="Lämna tillbaks" name="lamnatbxLjud"></td>
             </form>
-           </div>
+
           <?php }}?>
           </tbody>
           </table>
-      </div>
+    </div>
   <!-- FILM -->  
     <div class="box3">
-            <table class="table table-bordered">
+            <table class="table table-bordered bild3">
           <tbody>
         <?php
             if(is_array($fetchDataFilm)){      
@@ -284,13 +283,11 @@
           </tbody>
           </table>
       </div>
- </div>
+    </div>
+  </div>
 
 
-<link rel="stylesheet" href="anvandare.css">
-</head>
-<body>
-  <div class="rubrik"><h2>Bibliotek</h2></div>
+
 
 </body>
 </html>

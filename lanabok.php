@@ -30,7 +30,7 @@
 
 
 
-    // Gör om arrayen till en sträng som används i ett prepared statement  
+    // Gör om arrayen till en sträng
     $columnNameBok = implode(", ", $columnsBok);
     
   
